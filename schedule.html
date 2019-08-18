@@ -9,7 +9,7 @@ title: Schedule
     <tr>
       <td><strong>Date</strong></td>
       <td><strong>Topic</strong></td>
-      <td><strong>Slide</strong></td>
+      <td><strong>Slides</strong></td>
       <td><strong>Reading</strong></td>
       <td><strong>Projects</strong></td>
     </tr>
@@ -17,7 +17,7 @@ title: Schedule
   <tbody>
     {% for item in site.data.Schedule %}
     <tr>
-      <td>{{item.Date}}</td>
+      <td>{{item.Day}}, {{item.Month}} {{item.Date}}</td>
       <td>{{item.Szeliski}}</td>
       <td>{{item.Slides}}</td>
       <td>{{item.Reading}}</td>
