@@ -1,0 +1,27 @@
+---
+title: Schedule
+---
+
+<!--table border="1"-->
+<table>
+  <thead>
+    <tr>
+      <td><strong>Date</strong></td>
+      <td><strong>Topic</strong></td>
+      <td><strong>Slide</strong></td>
+      <td><strong>Reading</strong></td>
+      <td><strong>Projects</strong></td>
+    </tr>
+  </thead>
+  <tbody>
+    {% for item in site.data.schedule.csv %}
+    <tr>
+      <td>{{item.date}}</td>
+      <td>{{item.topic}}</td>
+      <td>{{item.slide}}</td>
+      <td>{{item.reading}}</td>
+      <td>{{item.project}}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
