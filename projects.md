@@ -1,3 +1,8 @@
+---
+layout: default
+title: Projects
+---
+
 # Projects
 
 * Image Filtering and Hybrid images		
