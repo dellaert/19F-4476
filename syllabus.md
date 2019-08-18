@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Introduction to Computer Vision
+title: Syllabus
 ---
 
 ## Syllabus
