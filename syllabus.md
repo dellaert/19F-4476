@@ -3,6 +3,8 @@ layout: default
 title: Introduction to Computer Vision
 ---
 
+## Syllabus
+
 **Instructor**: [Frank Dellaert](http://www.dellaert.com/), Professor, [Interactive Computing](https://ic.gatech.edu/)
 
 **TAs**: Cusuh Ham (head TA), Jacob Knaup, Julia Chen,  John Lambert,  Jon Balloch, Patsorn Sangkloy,  Shenhao Jiang, Stefan Stojanov, and Vijay Upadhya
