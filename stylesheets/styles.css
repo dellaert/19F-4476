@@ -108,7 +108,7 @@ a:hover small {
 }
 
 .wrapper {
-  width:860px;
+  width:900px;
   margin:0 auto;
 }
 
@@ -224,10 +224,14 @@ header ul a strong {
 }
 
 section {
-  width:500px;
+  width:580px;
   float:right;
   padding-bottom:50px;
 }
+
+/* table related; modified by Shenhao */
+tr:nth-child(even) {background-color: #f2f2f2;}
+/* end of table styling */
 
 small {
   font-size:11px;
