@@ -5,18 +5,6 @@ title: Syllabus
 
 ## Syllabus
 
-**Instructor**: [Frank Dellaert](http://www.dellaert.com/), Professor, [Interactive Computing](https://ic.gatech.edu/)
-
-**TAs**: Cusuh Ham (head TA), Jacob Knaup, Julia Chen,  John Lambert,  Jon Balloch, Patsorn Sangkloy,  Shenhao Jiang, Stefan Stojanov, and Vijay Upadhya
-
-**Clough Commons 144, MW 4.30pm-5.45pm**
-
-* [Schedule](schedule.html)
-* [Projects](projects.html)
-
-### Course Description
-This course provides an introduction to computer vision including fundamentals of image formation, camera imaging geometry, feature detection and matching, stereo, motion estimation and tracking, image classification and scene understanding. We'll develop basic methods for applications that include finding known models in images, depth recovery from stereo, camera calibration, image stabilization, automated alignment, tracking, boundary detection, and recognition. The focus of the course is to develop the intuitions and mathematics of the methods in lecture, and then to learn about the difference between theory and practice in the projects.
-
 ### Learning Objectives
 Upon completion of this course, students should be able to:
 1. Recognize and describe both the theoretical and practical aspects of computing with images. Connect issues from Computer Vision to Human Vision
