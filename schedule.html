@@ -21,7 +21,8 @@ title: Schedule
       <td>{{item.Szeliski}}</td>
       <td>
         {% unless item.Slides == '' %}
-          {{item.Slides}}.pdf
+          <a href="Slides/{{item.Slides}}.pptx">pptx</a>, 
+          <a href="Slides/{{item.Slides}}.pdf">pdf</a>
         {% endunless %}
       </td>
       <td>{{item.Reading}}</td>
