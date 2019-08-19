@@ -10,8 +10,8 @@ Upon completion of this course, students should be able to:
 1. Recognize and describe both the theoretical and practical aspects of computing with images. Connect issues from Computer Vision to Human Vision
 2. Describe the foundation of image formation and image analysis. Understand the basics of 2D and 3D Computer Vision.
 3. Become familiar with the major technical approaches involved in computer vision. Describe various methods used for registration, alignment, and matching in images.
-4. Get an exposure to advanced concepts leading to object and scene categorization from images.
-5. Build computer vision applications.
+4. Get an exposure to advanced concepts, including state of the art deep learning architectures, in all aspects of computer vision.
+5. Build computer vision applications with python and the pytorch framework.
 
 ### Prerequisites
 No prior experience with computer vision is assumed, although previous knowledge of visual computing or signal processing will be helpful. The following skills are necessary for this class:
@@ -20,7 +20,16 @@ No prior experience with computer vision is assumed, although previous knowledge
 * Math: Linear algebra, vector calculus, and probability. Linear algebra is the most important and students who have not taken a linear algebra course have struggled in the past.
 
 ### Grading
-TBD
+This project is heavily project-based, but there will be a midterm and final, each covering about half of the material. The grading distribution is:
+
+| Component     | Nr. | Grade | Total |
+|---------------|-----|-------|-------|
+| Projects      | 6   | 12.5% |  75%  |
+| Midterm       |     | 10%   |  10%  |
+| Final         |     | 10%   |  10%  |
+| Participation |     | 5%    |  5%   |
+|---------------|-----|-------|-------|
+|               |     |       | 100%  |
 
 ### Academic Integrity
 Academic dishonesty will not be tolerated. This includes cheating, lying about course matters, plagiarism, or helping others commit a violation of the Honor Code. Plagiarism includes reproducing the words of others without both the use of quotation marks and citation. Students are reminded of the obligations and expectations associated with the Georgia Tech Academic Honor Code and Student Code of Conduct, available online at www.honor.gatech.edu. For quizzes, no supporting materials are allowed (notes, calculators, phones, etc). 
