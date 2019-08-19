@@ -1,33 +1,33 @@
 ﻿Week,Month,Date,Day,Szeliski,Slides,Reading,Projects,2018 Topic
 1,Aug,19,Mon,Introduction,S01-Introduction,Ch. 1,,Introduction to computer vision
-1,Aug,21,Wed,Image formation,,Ch. 2,,Cameras and Optics
-2,Aug,26,Mon,Image formation,,Ch. 2,1 out,Light and Color and Image Filtering
-2,Aug,28,Wed,Image processing,,Ch. 3,,Thinking in Frequency
-3,Sep,2,Mon,"No classes, Labor Day",,,,"No classes, Labor Day"
-3,Sep,4,Wed,Convolutional Neural Networks,,TBD,,Interest points and corners
-4,Sep,9,Mon,Image processing,,Ch. 3,"1 due, 2 out",
-4,Sep,11,Wed,Feature detection and matching,,Ch. 4,,Local image features
-5,Sep,16,Mon,Feature detection and matching,,Ch. 4,,"Model fitting, Hough Transform"
-5,Sep,18,Wed,Segmentation,,Ch. 5,,RANSAC and transformations
-6,Sep,23,Mon,Segmentation,,Ch. 5,"2 due, 3 out",Stereo intro and Camera Calibration
-6,Sep,25,Wed,Feature-based alignment,,Ch. 6,,Epipolar Geometry and Structure from Motion
-7,Sep,30,Mon,Feature-based alignment,,Ch. 6,,Stereo Correspondence and Optical Flow
-7,Oct,2,Wed,Structure from motion,,Ch. 7,,Quiz 1
-8,Oct,7,Mon,Structure from motion,,Ch. 7,3 due,
-8,Oct,9,Wed,Midterm,,,,Machine learning crash course and recognition overview
-9,Oct,14,Mon,Fall recess - no classes,,,,Fall recess - no classes
-9,Oct,16,Wed,Dense motion estimation,,Ch. 8,,Recognition and Bag of Words
-10,Oct,21,Mon,Image Stitching,,Ch. 9,4 out,"Large-scale retrieval: Spatial Verification, TF-IDF, Query Expansion, feature encoding"
-10,Oct,23,Wed,Stereo Correspondence,,Ch. 11,,Large-scale category recognition and advanced feature encoding
-11,Oct,28,Mon,Stereo Correspondence,,Ch. 11,,Detection with sliding windows: Viola Jones
-11,Oct,30,Wed,3D reconstruction,,Ch. 12,,Detection with sliding windows: Dalal Triggs and Pascal VOC
-12,Nov,4,Mon,3D reconstruction,,Ch. 12,"4 due, 5 out",Big Data
-12,Nov,6,Wed,Recognition,,Ch. 14,,Crowdsourcing and Human Computation
-13,Nov,11,Mon,Recognition,,Ch. 14,,Neural networks Basics and Convolutional Networks
-13,Nov,13,Wed,Recognition,,Ch. 14,,Object Detectors Emerge in Deep Scene CNNs and Deeper Deep Architectures.
-14,Nov,18,Mon,Recognition,,Ch. 14,"4 due, 6 out",Structured Output from Deep Networks
-14,Nov,20,Wed,Misc. Topics,,TBD,,Quiz 2
-15,Nov,25,Mon,Misc. Topics,,TBD,,Unsupervised Learning and Colorization
-15,Nov,27,Wed,"No classes, student recess",,,,"No classes, student recess"
-16,Dec,2,Mon,Misc. Topics,,TBD,6 due,(Last day of classes)
-,,,,Final,,,,Final Exam Period
+1,Aug,21,Wed,Image formation,TBD,Ch. 2,,Cameras and Optics
+2,Aug,26,Mon,Image formation,TBD,Ch. 2,1 out,Light and Color and Image Filtering
+2,Aug,28,Wed,Image processing,TBD,Ch. 3,,Thinking in Frequency
+3,Sep,2,Mon,"No classes, Labor Day",TBD,,,"No classes, Labor Day"
+3,Sep,4,Wed,Convolutional Neural Networks,TBD,TBD,,Interest points and corners
+4,Sep,9,Mon,Image processing,TBD,Ch. 3,"1 due, 2 out",
+4,Sep,11,Wed,Feature detection and matching,TBD,Ch. 4,,Local image features
+5,Sep,16,Mon,Feature detection and matching,TBD,Ch. 4,,"Model fitting, Hough Transform"
+5,Sep,18,Wed,Segmentation,TBD,Ch. 5,,RANSAC and transformations
+6,Sep,23,Mon,Segmentation,TBD,Ch. 5,"2 due, 3 out",Stereo intro and Camera Calibration
+6,Sep,25,Wed,Feature-based alignment,TBD,Ch. 6,,Epipolar Geometry and Structure from Motion
+7,Sep,30,Mon,Feature-based alignment,TBD,Ch. 6,,Stereo Correspondence and Optical Flow
+7,Oct,2,Wed,Structure from motion,TBD,Ch. 7,,Quiz 1
+8,Oct,7,Mon,Structure from motion,TBD,Ch. 7,3 due,
+8,Oct,9,Wed,Midterm,TBD,,,Machine learning crash course and recognition overview
+9,Oct,14,Mon,Fall recess - no classes,TBD,,,Fall recess - no classes
+9,Oct,16,Wed,Dense motion estimation,TBD,Ch. 8,,Recognition and Bag of Words
+10,Oct,21,Mon,Image Stitching,TBD,Ch. 9,4 out,"Large-scale retrieval: Spatial Verification, TF-IDF, Query Expansion, feature encoding"
+10,Oct,23,Wed,Stereo Correspondence,TBD,Ch. 11,,Large-scale category recognition and advanced feature encoding
+11,Oct,28,Mon,Stereo Correspondence,TBD,Ch. 11,,Detection with sliding windows: Viola Jones
+11,Oct,30,Wed,3D reconstruction,TBD,Ch. 12,,Detection with sliding windows: Dalal Triggs and Pascal VOC
+12,Nov,4,Mon,3D reconstruction,TBD,Ch. 12,"4 due, 5 out",Big Data
+12,Nov,6,Wed,Recognition,TBD,Ch. 14,,Crowdsourcing and Human Computation
+13,Nov,11,Mon,Recognition,TBD,Ch. 14,,Neural networks Basics and Convolutional Networks
+13,Nov,13,Wed,Recognition,TBD,Ch. 14,,Object Detectors Emerge in Deep Scene CNNs and Deeper Deep Architectures.
+14,Nov,18,Mon,Recognition,TBD,Ch. 14,"4 due, 6 out",Structured Output from Deep Networks
+14,Nov,20,Wed,Misc. Topics,TBD,TBD,,Quiz 2
+15,Nov,25,Mon,Misc. Topics,TBD,TBD,,Unsupervised Learning and Colorization
+15,Nov,27,Wed,"No classes, student recess",TBD,,,"No classes, student recess"
+16,Dec,2,Mon,Misc. Topics,TBD,TBD,6 due,(Last day of classes)
+,,,,Final,TBD,,,Final Exam Period
