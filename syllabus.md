@@ -21,6 +21,7 @@ No prior experience with computer vision is assumed, although previous knowledge
 
 ### Grading
 This project is heavily project-based, but there will be a midterm and final, each covering about half of the material. The grading distribution is:
+
 | Component     | Nr. | Grade | Total |
 |---------------|-----|-------|-------|
 | Projects      | 6   | 12.5% |  75%  |
