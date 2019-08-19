@@ -19,7 +19,11 @@ title: Schedule
     <tr>
       <td>{{item.Day}}, {{item.Month}} {{item.Date}}</td>
       <td>{{item.Szeliski}}</td>
-      <td>{{item.Slides}}</td>
+      <td>
+        {% unless item.Slides == '' %}
+          {{item.Slides}}.pdf
+        {% endunless %}
+      </td>
       <td>{{item.Reading}}</td>
       <td>{{item.Projects}}</td>
     </tr>
