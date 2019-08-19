@@ -4,6 +4,6 @@ title: Resources
 ---
 ## Resources
 
-* http://szeliski.org/Book/
-* https://www.python.org/
-* https://pytorch.org/
+* [Szeliksi book](http://szeliski.org/Book/)
+* [Python](https://www.python.org/)
+* [Pytorch](https://pytorch.org/)
