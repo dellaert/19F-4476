@@ -20,7 +20,15 @@ No prior experience with computer vision is assumed, although previous knowledge
 * Math: Linear algebra, vector calculus, and probability. Linear algebra is the most important and students who have not taken a linear algebra course have struggled in the past.
 
 ### Grading
-TBD
+This project is heavily project-based, but there will be a midterm and final, each covering about half of the material. The grading distribution is:
+| Component     | Nr. | Grade | Total |
+|---------------|-----|-------|-------|
+| Projects      | 6   | 12.5% |  75%  |
+| Midterm       |     | 10%   |  10%  |
+| Final         |     | 10%   |  10%  |
+| Participation |     | 5%    |  5%   |
+|---------------|-----|-------|-------|
+|               |     |       | 100%  |
 
 ### Academic Integrity
 Academic dishonesty will not be tolerated. This includes cheating, lying about course matters, plagiarism, or helping others commit a violation of the Honor Code. Plagiarism includes reproducing the words of others without both the use of quotation marks and citation. Students are reminded of the obligations and expectations associated with the Georgia Tech Academic Honor Code and Student Code of Conduct, available online at www.honor.gatech.edu. For quizzes, no supporting materials are allowed (notes, calculators, phones, etc). 
