@@ -5,9 +5,9 @@ title: Projects
 
 # Projects
 
-* Image Filtering and Hybrid images		
-* Local Feature Matching		
-* Camera Calibration and Fundamental Matrix Estimation with RANSAC		
-* Scene Recognition with Bag of Words		
-* Face Detection with a Sliding Window		
-* Deep Learning
+1. Image Filtering and Hybrid images		
+2. Local Feature Matching		
+3. Camera Calibration and Fundamental Matrix Estimation with RANSAC		
+4. Stereo and deep stereo
+5. Scene Recognition with Bag of Words
+6. Object Recognition with Deep Learning
