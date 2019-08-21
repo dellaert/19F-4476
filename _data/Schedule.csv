@@ -1,6 +1,6 @@
 ﻿Week,Month,Date,Day,Szeliski,Slides,Reading,Projects,2018 Topic
 1,Aug,19,Mon,Introduction,S01-Introduction,Ch. 1,,Introduction to computer vision
-1,Aug,21,Wed,Image formation,TBD,Ch. 2,,Cameras and Optics
+1,Aug,21,Wed,Image formation,S02-Geometry,Ch. 2,,Cameras and Optics
 2,Aug,26,Mon,Image formation,TBD,Ch. 2,1 out,Light and Color and Image Filtering
 2,Aug,28,Wed,Image processing,TBD,Ch. 3,,Thinking in Frequency
 3,Sep,2,Mon,"No classes, Labor Day",TBD,,,"No classes, Labor Day"
