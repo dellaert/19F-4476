@@ -6,7 +6,7 @@ title: Project 1 - Image Filtering and Hybrid Images
 <center>
     <img src="images/proj1/hybrid_image.jpg">
     <br>
-    Look at the image on from very close, then from far away.
+    Look at the image from very close, then from far away.
     <br><br>
 </center>
 
@@ -15,8 +15,8 @@ title: Project 1 - Image Filtering and Hybrid Images
 ### Brief
 * Due: 9/9/2019 11:59PM
 * Project materials including writeup template [proj1.zip]()
-* Handin: through [Canvas](https://gatech.instructure.com)
-* Required files: code/, results/, report.pdf
+* Hand-in: through [Canvas](https://gatech.instructure.com)
+* Required files: proj1.zip (code/, results/), report.pdf
 
 ### Overview
 The goal of this assignment is to write an image filtering function and use it to create [hybrid images](http://cvcl.mit.edu/hybrid_gallery/gallery.html) using a simplified version of the SIGGRAPH 2006 [paper](http://cvcl.mit.edu/publications/OlivaTorralb_Hybrid_Siggraph06.pdf) by Oliva, Torralba, and Schyns. _Hybrid images_ are static images that change in interpretation as a function of the viewing distance. The basic idea is that high frequency tends to dominate perception when it is available but, at a distance, only the low frequency (smooth) part of the signal can be seen. By blending the high frequency portion of one image with the low-frequency portion of another, you get a hybrid image that leads to different interpretations at different distances.
@@ -65,6 +65,8 @@ The starter code provides a function, `vis_hybrid_image()` in `utils.py`, which 
 
 **Potentially useful NumPy (Python library) functions**: `np.pad()`, which does many kinds of image padding for you, `np.clip()`, which "clips" out any values in an array outside of a specified range, `np.sum()` and `np.multiply()`, which makes it efficient to do the convolution (dot product) between the filter and windows of the image. Documentation for NumPy can be found [here](https://docs.scipy.org/doc/numpy/) or by Googling the function in question.
 
+**Potentially useful PyTorch tutorials**: [Data loading & processing](https://pytorch.org/tutorials/beginner/data_loading_tutorial.html) and [constructing neural networks](https://pytorch.org/tutorials/beginner/blitz/neural_networks_tutorial.html).
+
 **Forbidden functions** (you can use these for testing, but not in your final code): anything in OpenCV, and anything that takes care of the filtering operation for you. If it feels like you're sidestepping the work, then it's probably not allowed. Ask the TAs if you have any doubts.
 
 **Editing code**: You can use any method you want to edit the Python files. You may use a simple text editor like [Sublime Text](https://www.sublimetext.com/3), an IDE like [PyCharm](https://www.jetbrains.com/pycharm/), or even just editing the code in your browser from the iPython notebook homepage. Google "Python editor" to find a litany of additional suggestions.
@@ -76,10 +78,18 @@ We will provide you a set of tests you can run to evaluate your implementation. 
 For later projects there will be more concrete extra credit suggestions. It is possible to get extra credit for this project as well if you come up with some clever extensions which impress the TAs.
 
 ### Writeup
-For this project (and all other projects), you must do a project report using the template slides provided to you. Do <u>not</u> change the order of the slides or remove any slides, as this will affect the grading process on Gradescope and you will be deducted points. In the report you will describe your algorithm and any decisions you made to write your algorithm a particular way. Then you will show and discuss the results of your algorithm. The template slides provide guidance for what you should include in your report. Add slides _after_ the given slides to discuss anything extra you did. A good writeup doesn't just show results, it tries to draw some conclusions from your experiments. You must convert the slide deck into a PDF for your submission.
+For this project (and all other projects), you must do a project report using the template slides provided to you. Do <u>not</u> change the order of the slides or remove any slides, as this will affect the grading process on Gradescope and you will be deducted points. In the report you will describe your algorithm and any decisions you made to write your algorithm a particular way. Then you will show and discuss the results of your algorithm. The template slides provide guidance for what you should include in your report. Add slides _after_ the given slides to discuss anything extra you did. A good writeup doesn't just show results--it tries to draw some conclusions from the experiments. You must convert the slide deck into a PDF for your submission.
 
 ### Rubric
-TO-DO
+* +25 pts: `my_imfilter()` in `student_code.py`
+* +10 pts: `create_hybrid_image()` in `student_code.py`
+* +10 pts: `make_dataset()` in `datasets.py`
+* +5 pts: `__len__()` in `datasets.py`
+* +5 pts: `__getitem__()` in `datasets.py`
+* +15 pts: `low_pass()` in `models.py`
+* +10 pts: `forward()` in `models.py`
+* +20 pts: Report with several examples of hybrid images
+* -5\*n pts: Lose 5 points for every time you do not follow the instructions for the hand-in format.
 
 ### Submission Format
 This is very important as you will lose 5 points for every time you do not follow the instructions. You will attach two items in your submission on Canvas:
@@ -88,9 +98,9 @@ This is very important as you will lose 5 points for every time you do not follo
     * `code/` - directory containing all your code for this assignment
     * `results/` - directory containing your results (generated by the notebook)
     * `data/` - (optional) if you use any data other than the images we provide you, please include them here
-2. `<your_gt_username>_proj1.pdf` - your report
+2. `<your_gt_username>_proj1.pdf` - your report. Do <u>not</u> include this in the zip folder!
 
-Do <u>not</u> use absolute paths in your code. Your code will break if you use absolute paths, and you will lose points because of it. Simply use relative paths as the starter code already does. Do <u>not</u> turn the `data/` folder in unless you have added new data. Hand in your project as a zip file and PDF through Canvas. You can create the zip file using `python zip_submission.py`.
+Do <u>not</u> use absolute paths in your code. Your code will break if you use absolute paths, and you will lose points because of it. Use relative paths like the starter code already does. Do <u>not</u> turn the `data/` folder in unless you have added new data. Hand in your project as a zip file and PDF through Canvas. You can create the zip file using `python zip_submission.py`.
 
 ### Credits
 Assignment developed by Cusuh Ham, John Lambert, Frank Dellaert, and James Hays based on a similar project by Derek Hoiem.
