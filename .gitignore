@@ -1,2 +1,6 @@
 # ignoring site folder since it can be generated
 _site/
+
+Gemfile
+Gemfile.lock
+
