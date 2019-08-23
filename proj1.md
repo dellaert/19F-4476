@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Project 1: Image Filtering and Hybrid Images
+title: Project 1 - Image Filtering and Hybrid Images
 ---
 
 <center>
@@ -23,10 +23,10 @@ The goal of this assignment is to write an image filtering function and use it t
 
 ### Setup
 1. Install [Miniconda](https://conda.io/miniconda.html). It doesn't matter whether you use Python 2 or 3 because we will create our own environment that uses 3 anyways.
-2. Create a conda environment using the appropriate command. On Windows, open the installed "Conda prompt" to run the command. On MacOS and Linux, you can just use a terminal window to run the command, Modify the command based on your OS ('linux', 'max', or 'win'): `conda env create -f environment_<OS>.yml`
+2. Create a conda environment using the appropriate command. On Windows, open the installed "Conda prompt" to run the command. On MacOS and Linux, you can just use a terminal window to run the command, Modify the command based on your OS (`linux`, `mac`, or `win`): `conda env create -f environment_<OS>.yml`
 3. This should create an environment named 'cs4476'. Activate it using the Windows command, `activate cs4476` or the MacOS / Linux command, `source activate cs4476`
 4. Run the notebook using `jupyter notebook ./code/proj1.ipynb`
-5. Generate the zip folder for the code portion of your submission once you've finished the project using `python zip_submission.py` (don't forget to submit your report!).
+5. Generate the zip folder for the code portion of your submission once you've finished the project using `python zip_submission.py` (don't forget to submit your report, too!).
 
 ### Details
 This project is intended to familiarize you with Python, Pytorch, and image filtering. Once you have created an image filtering function, it is relatively straightforward to construct hybrid images. If you don't already know Python, you may find [this resource](https://docs.python.org/3/tutorial/) helpful. If you are more familiar with MATLAB, [this guide](http://mathesaurus.sourceforge.net/matlab-numpy.html) is very helpful. If you're unfamiliar with PyTorch, the [tutorials](https://pytorch.org/tutorials/) from the official website are useful.
