@@ -16,7 +16,7 @@ title: Project 1 - Image Filtering and Hybrid Images
 * Due: 9/9/2019 11:59PM
 * Project materials including writeup template [proj1.zip]()
 * Hand-in: through [Canvas](https://gatech.instructure.com)
-* Required files: proj1.zip (code/, results/), report.pdf
+* Required files: `proj1.zip` (`code/`, `cutoff_frequencies.txt`), `report.pdf`
 
 ## Overview
 The goal of this assignment is to write an image filtering function and use it to create [hybrid images](http://cvcl.mit.edu/hybrid_gallery/gallery.html) using a simplified version of the SIGGRAPH 2006 [paper](http://cvcl.mit.edu/publications/OlivaTorralb_Hybrid_Siggraph06.pdf) by Oliva, Torralba, and Schyns. _Hybrid images_ are static images that change in interpretation as a function of the viewing distance. The basic idea is that high frequency tends to dominate perception when it is available but, at a distance, only the low frequency (smooth) part of the signal can be seen. By blending the high frequency portion of one image with the low-frequency portion of another, you get a hybrid image that leads to different interpretations at different distances.
@@ -32,13 +32,13 @@ This project is intended to familiarize you with Python, Pytorch, and image filt
 
 ## Part 1: NumPy
 
-**Image Filtering.** Image filtering (or convolution) is a fundamental image processing tool. See chapter 3.2 of Szeliski and the lecture materials to learn about image filtering (specifically linear filtering). You will be writing your own function to implement image filtering from scratch. More specifically, you will implement `my_imfilter()` which imitates the `filter2D()` function in the OpenCV library. As specified in `student_code.py`, your filtering algorithm must: (1) support grayscale and color images, (2) support arbitrarily-shaped filters, as long as both dimensions are odd (e.g. 7x9 filters, but not 4x5 filters), (3) pad the input image with zeros or reflected image content, and (4) return a filtered image which is the same resolution as the input image. We have provided an iPython notebook, `proj1_test_filtering.ipynb`, to help you debug your image filtering algorithm.
+**Image Filtering.** Image filtering (or convolution) is a fundamental image processing tool. See chapter 3.2 of Szeliski and the lecture materials to learn about image filtering (specifically linear filtering). You will be writing your own function to implement image filtering from scratch. More specifically, you will implement `my_imfilter()` which imitates the `filter2D()` function in the OpenCV library. As specified in `part1.py`, your filtering algorithm must: (1) support grayscale and color images, (2) support arbitrarily-shaped filters, as long as both dimensions are odd (e.g. 7x9 filters, but not 4x5 filters), (3) pad the input image with zeros or reflected image content, and (4) return a filtered image which is the same resolution as the input image. We have provided an iPython notebook, `proj1_test_filtering.ipynb`, to help you debug your image filtering algorithm.
 
-**Hybrid Images.** A hybrid image is the sum of a low-pass filtered version of one image and a high-pass filtered version of another image. There is a free parameter, _cutoff frequency_, that controls _how much_ high frequency to remove from the first image and how much low frequency to leave in the second image. This value can be tuned for each image pair. In `cutoff_frequencies.txt` under `data/`, we provide a default value of 7 for each pair of images (the value on line _i_ corresponds to the cutoff frequency value for the _i_-th image pair). You should replace these values with the ones you find work best for each image pair. In the paper it is suggested to use two cutoff frequencies (one tuned for each image) and you are free to try that as well. In the starter code, the cutoff frequency is controlled by changing the standard deviation of the Gaussian filter used in constructing the hybrid images. You will first implement `create_hybrid_image()` according to the starter code in `student_code.py`. Your function will call `my_imfilter()` to create low and high frequency images and then combine them into a hybrid image.
+**Hybrid Images.** A hybrid image is the sum of a low-pass filtered version of one image and a high-pass filtered version of another image. There is a free parameter, _cutoff frequency_, that controls _how much_ high frequency to remove from the first image and how much low frequency to leave in the second image. This value can be tuned for each image pair. In `cutoff_frequencies.txt`, we provide a default value of 7 for each pair of images (the value on line _i_ corresponds to the cutoff frequency value for the _i_-th image pair). You should replace these values with the ones you find work best for each image pair. In the paper it is suggested to use two cutoff frequencies (one tuned for each image) and you are free to try that as well. In the starter code, the cutoff frequency is controlled by changing the standard deviation of the Gaussian filter used in constructing the hybrid images. You will first implement `create_hybrid_image()` according to the starter code in `part1.py`. Your function will call `my_imfilter()` to create low and high frequency images and then combine them into a hybrid image.
 
 ## Part 2: PyTorch
 
-**Dataloader.** You will now implement creating hybrid images again but using PyTorch. The `HybridImageDataset` class in `datasets.py` will create tuples using pairs of images with a corresponding cutoff frequency (which you should have found from experimenting in Part 1). The images will be loaded from `data/` and the cutoff frequencies from `data/cutoff_frequencies.txt`. Refer to [this tutorial](https://pytorch.org/tutorials/beginner/data_loading_tutorial.html) for additional information on data loading & processing.
+**Dataloader.** You will now implement creating hybrid images again but using PyTorch. The `HybridImageDataset` class in `datasets.py` will create tuples using pairs of images with a corresponding cutoff frequency (which you should have found from experimenting in Part 1). The images will be loaded from `data/` and the cutoff frequencies from `cutoff_frequencies.txt`. Refer to [this tutorial](https://pytorch.org/tutorials/beginner/data_loading_tutorial.html) for additional information on data loading & processing.
 
 **Model.** Next, you will implement the `HybridImageModel` class in `models.py`. Instead of using your implementation of `my_imfilter()` to get the low and high frequencies from a pair of images, `low_pass()` should use the 2d convolution operator from `torch.nn.functional` to apply a low pass filter to a given image. `forward()` will first create a low pass filter for each pair of images using the cutoff frequencies as specified in `cutoff_frequencies.txt`. Then, similar to `create_hybrid_image()` from Part 1, `forward()` will call `low_pass()` to create the low and high frequency images and combine them into a hybrid image. Refer to [this tutorial](https://pytorch.org/tutorials/beginner/blitz/neural_networks_tutorial.html) for additional information on defining neural networks using PyTorch.
 
@@ -88,8 +88,8 @@ For later projects there will be more concrete extra credit suggestions. It is p
 For this project (and all other projects), you must do a project report using the template slides provided to you. Do <u>not</u> change the order of the slides or remove any slides, as this will affect the grading process on Gradescope and you will be deducted points. In the report you will describe your algorithm and any decisions you made to write your algorithm a particular way. Then you will show and discuss the results of your algorithm. The template slides provide guidance for what you should include in your report. Add slides _after_ the given slides to discuss anything extra you did. A good writeup doesn't just show results--it tries to draw some conclusions from the experiments. You must convert the slide deck into a PDF for your submission.
 
 ## Rubric
-* +25 pts: `my_imfilter()` in `student_code.py`
-* +10 pts: `create_hybrid_image()` in `student_code.py`
+* +25 pts: `my_imfilter()` in `part1.py`
+* +10 pts: `create_hybrid_image()` in `part1.py`
 * +10 pts: `make_dataset()` in `datasets.py`
 * +5 pts: `get_cutoff_frequencies()` in `datasets.py`
 * +5 pts: `__len__()` in `datasets.py`
@@ -104,11 +104,11 @@ This is very important as you will lose 5 points for every time you do not follo
 
 1. A zip folder containing:
     * `code/` - directory containing all your code for this assignment
-    * `results/` - directory containing your results (generated by the notebook)
-    * `data/` - (optional) if you use any data other than the images we provide you, please include them here
+    * `cutoff_frequencies.txt` - .txt file containing the best cutoff frequency values you found for each pair of images in `data/`.
+    * `additional_data/` - (optional) if you use any data other than the images we provide you, please include them here
 2. `<your_gt_username>_proj1.pdf` - your report. Do <u>not</u> include this in the zip folder!
 
-Do <u>not</u> use absolute paths in your code. Your code will break if you use absolute paths, and you will lose points because of it. Use relative paths like the starter code already does. Do <u>not</u> turn the `data/` folder in unless you have added new data. Hand in your project as a zip file and PDF through Canvas. You can create the zip file using `python zip_submission.py`.
+Do <u>not</u> use absolute paths in your code. Your code will break if you use absolute paths, and you will lose points because of it. Use relative paths like the starter code already does. Do <u>not</u> turn in the `data/` folder. Hand in your project as a zip file and PDF through Canvas. You can create the zip file using `python zip_submission.py`.
 
 ## Credits
 Assignment developed by Cusuh Ham, John Lambert, Frank Dellaert, and James Hays based on a similar project by Derek Hoiem.
