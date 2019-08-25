@@ -16,7 +16,7 @@ title: Project 1 - Image Filtering and Hybrid Images
 * Due: 9/9/2019 11:59PM
 * Project materials including writeup template [proj1.zip]()
 * Hand-in: through [Canvas](https://gatech.instructure.com)
-* Required files: `proj1.zip` (`code/`, `cutoff_frequencies.txt`), `report.pdf`
+* Required files: `proj1.zip` (`proj1_code/`, `cutoff_frequencies.txt`), `report.pdf`
 
 ## Overview
 The goal of this assignment is to write an image filtering function and use it to create [hybrid images](http://cvcl.mit.edu/hybrid_gallery/gallery.html) using a simplified version of the SIGGRAPH 2006 [paper](http://cvcl.mit.edu/publications/OlivaTorralb_Hybrid_Siggraph06.pdf) by Oliva, Torralba, and Schyns. _Hybrid images_ are static images that change in interpretation as a function of the viewing distance. The basic idea is that high frequency tends to dominate perception when it is available but, at a distance, only the low frequency (smooth) part of the signal can be seen. By blending the high frequency portion of one image with the low-frequency portion of another, you get a hybrid image that leads to different interpretations at different distances.
@@ -27,8 +27,10 @@ This project is intended to familiarize you with Python, Pytorch, and image filt
 1. Install [Miniconda](https://conda.io/miniconda.html). It doesn't matter whether you use Python 2 or 3 because we will create our own environment that uses 3 anyways.
 2. Create a conda environment using the appropriate command. On Windows, open the installed "Conda prompt" to run the command. On MacOS and Linux, you can just use a terminal window to run the command, Modify the command based on your OS (`linux`, `mac`, or `win`): `conda env create -f environment_<OS>.yml`
 3. This should create an environment named 'cs4476'. Activate it using the Windows command, `activate cs4476` or the MacOS / Linux command, `source activate cs4476`
-4. Run the notebook using `jupyter notebook ./code/proj1.ipynb`
-5. Generate the zip folder for the code portion of your submission once you've finished the project using `python zip_submission.py` (don't forget to submit your report, too!).
+4. Install the project package, by running `pip install -e .` inside the repo folder.
+5. Run the notebook using `jupyter notebook ./proj1_code/proj1.ipynb`
+6. Ensure that all sanity checks are passing by running `pytest tests` inside the repo folder.
+7. Generate the zip folder for the code portion of your submission once you've finished the project using `python zip_submission.py` (don't forget to submit your report, too!).
 
 ## Part 1: NumPy
 
@@ -79,7 +81,7 @@ The starter code provides a function, `vis_hybrid_image()` in `utils.py`, which 
 **Editing code**: You can use any method you want to edit the Python files. You may use a simple text editor like [Sublime Text](https://www.sublimetext.com/3), an IDE like [PyCharm](https://www.jetbrains.com/pycharm/), or even just editing the code in your browser from the iPython notebook homepage. Google "Python editor" to find a litany of additional suggestions.
 
 ## Testing
-We will provide you a set of tests you can run to evaluate your implementation. Your grade on the coding portion of the project will be further evaluated with a set of tests not provided to you.
+We provide a set of tests you can run to evaluate your implementation. This can be done by running `pytest tests` inside the root directory of the project. Your grade on the coding portion of the project will be further evaluated with a set of tests not provided to you.
 
 ## Bells & Whistles (Extra Points)
 For later projects there will be more concrete extra credit suggestions. It is possible to get extra credit for this project as well if you come up with some clever extensions which impress the TAs.
@@ -103,7 +105,7 @@ For this project (and all other projects), you must do a project report using th
 This is very important as you will lose 5 points for every time you do not follow the instructions. You will attach two items in your submission on Canvas:
 
 1. A zip folder containing:
-    * `code/` - directory containing all your code for this assignment
+    * `proj1_code/` - directory containing all your code for this assignment
     * `cutoff_frequencies.txt` - .txt file containing the best cutoff frequency values you found for each pair of images in `data/`.
     * `additional_data/` - (optional) if you use any data other than the images we provide you, please include them here
 2. `<your_gt_username>_proj1.pdf` - your report. Do <u>not</u> include this in the zip folder!
