@@ -92,7 +92,7 @@ The starter code provides a function, `vis_image_scales()` in `utils.py`, which 
 We provide a set of tests you can run to evaluate your implementation. This can be done by running `pytest tests` inside the root directory of the project. Your grade on the coding portion of the project will be further evaluated with a set of tests not provided to you.
 
 ## Bells & Whistles (Extra Points)
-For later projects there will be more concrete extra credit suggestions. It is possible to get extra credit for this project as well if you come up with some clever extensions which impress the TAs.
+For later projects there will be more concrete extra credit suggestions. It is possible to get extra credit for this project as well if you come up with some clever extensions which impress the TAs. If you choose to do extra credit, make sure to include a `README.txt` which briefly explains what you did, and how the TAs can run your code. Additionally, you should add slides _at the end_ of your report further explaining your implementation, results, and analysis. You will not be awarded credit if these two components (README and slides) are missing from your submission.
 
 ## Writeup
 For this project (and all other projects), you must do a project report using the template slides provided to you. Do <u>not</u> change the order of the slides or remove any slides, as this will affect the grading process on Gradescope and you will be deducted points. In the report you will describe your algorithm and any decisions you made to write your algorithm a particular way. Then you will show and discuss the results of your algorithm. The template slides provide guidance for what you should include in your report. A good writeup doesn't just show results--it tries to draw some conclusions from the experiments. You must convert the slide deck into a PDF for your submission.
@@ -126,4 +126,4 @@ This is very important as you will lose 5 points for every time you do not follo
 Do <u>not</u> install any additional packages inside the conda environment. The TAs will use the same environment as defined in the config files we provide you, so anything that's not in there by default will probably cause your code to break during grading. Do <u>not</u> use absolute paths in your code or your code will break. Use relative paths like the starter code already does. Failure to follow any of these instructions will lead to point deductions. Create the zip file using `python zip_submission.py --gt_username <your_gt_username>`. Hand in your project as a zip file and PDF through Canvas.
 
 ## Credits
-Assignment developed by Cusuh Ham, John Lambert, Frank Dellaert, and James Hays based on a similar project by Derek Hoiem.
+Assignment developed by Cusuh Ham, John Lambert, Samarth Brahmbhatt, Frank Dellaert, and James Hays based on a similar project by Derek Hoiem.
