@@ -32,9 +32,9 @@ This project is heavily project-based, but there will be a midterm and final, ea
 |               |     |       | 100%  |
 
 ### Academic Integrity
-Academic dishonesty will not be tolerated. This includes cheating, lying about course matters, plagiarism, or helping others commit a violation of the Honor Code. Plagiarism includes reproducing the words of others without both the use of quotation marks and citation. Students are reminded of the obligations and expectations associated with the Georgia Tech Academic Honor Code and Student Code of Conduct, available online at www.honor.gatech.edu. For quizzes, no supporting materials are allowed (notes, calculators, phones, etc). 
+Academic dishonesty will not be tolerated. This includes cheating, lying about course matters, plagiarism, or helping others commit a violation of the Honor Code. Plagiarism includes reproducing the words of others without both the use of quotation marks and citation. Students are reminded of the obligations and expectations associated with the Georgia Tech Academic Honor Code and Student Code of Conduct, available online at www.honor.gatech.edu. For quizzes, no supporting materials are allowed (notes, calculators, phones, etc).
 
-You are expected to implement the core components of each project on your own, but the extra credit opportunties often build on third party data sets or code. That's fine. Feel free to include results built on other software, as long as you are clear in your handin that it is not your own work. 
+You are expected to implement the core components of each project on your own, but the extra credit opportunties often build on third party data sets or code. That's fine. Feel free to include results built on other software, as long as you are clear in your handin that it is not your own work.
 
 You should not view or edit anyone else's code. You should not post code to Piazza, except for starter code / helper code that isn't related to the core project.
 
@@ -48,6 +48,7 @@ If needed, we will make classroom accommodations for students with documented di
 ### Contact Info and Office Hours:
 If possible, please use Piazza to ask questions and seek clarifications before emailing the instructor or staff.
 * Cusuh Ham	cusuh@gatech.edu
+* Ayush Baid abaid@gatech.edu
 * Jacob Knaup	jknaup3@gatech.edu
 * Julia Chen	julia.c@gatech.edu
 * John Lambert	johnlambert@gatech.edu
