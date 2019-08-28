@@ -2,7 +2,7 @@
 1,Aug,19,Mon,Introduction,S01-Introduction,Ch. 1,,Introduction to computer vision
 1,Aug,21,Wed,Image formation (geometry),S02-Geometry,Ch. 2,,Cameras and Optics
 2,Aug,26,Mon,Image formation (photometry),S02-Photometry,Ch. 2,1 out,Light and Color and Image Filtering
-2,Aug,28,Wed,Image processing,TBD,Ch. 3,,Thinking in Frequency
+2,Aug,28,Wed,Image processing,S03-Image-Processing-A,Ch. 3,,Thinking in Frequency
 3,Sep,2,Mon,"No classes, Labor Day",TBD,,,"No classes, Labor Day"
 3,Sep,4,Wed,Convolutional Neural Networks,TBD,TBD,,Interest points and corners
 4,Sep,9,Mon,Image processing,TBD,Ch. 3,"1 due, 2 out",
