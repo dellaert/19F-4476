@@ -40,7 +40,7 @@ The multivariate Gaussian function is defined as:
 
 $$p(x;\mu, \Sigma) = \frac{1}{(2\pi)^{n/2}\det(\Sigma)^{1/2}}\exp\bigg(-\frac{1}{2}(x-\mu)^\top\Sigma^{-1}(x-\mu)\bigg)$$
 
-where $$n$$ is equal to the dimension of $$x$$, $$\mu$$ is the mean, and $$\Sigma$$ is the covariance matrix. Alternatively, you can create a 2D Gaussian by taking the outer product of two vectors drawn from a univariate Gaussian function, which is defined as:
+where $$n$$ is equal to the dimension of $$x$$, $$\mu$$ is the mean, and $$\Sigma$$ is the covariance matrix. Alternatively, you can create a 2D Gaussian by taking the outer product of two vectors. Each such vector should have values populated from evaluating the 1D Gaussian PDF at each coordinate. The 1D Gaussian is defined as:
 
 $$p(x; \mu, \sigma^2) = \frac{1}{\sqrt{2\pi}\sigma} \mbox{exp} \Bigg(-\frac{1}{2\sigma^2}(x-\mu)^2 \Bigg)$$
 
