@@ -14,7 +14,7 @@ title: Project 1 - Image Filtering and Hybrid Images
 
 ## Brief
 * Due: 9/9/2019 11:59PM
-* Project materials including writeup template [proj1.zip](projects/proj1.zip)
+* Project materials including writeup template [proj1_v2.zip](projects/proj1_v2.zip)
 * Hand-in: through [Canvas](https://gatech.instructure.com)
 * Required files: `<your_gt_username>.zip`, `<your_gt_username>.pdf`
 
