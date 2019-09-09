@@ -5,7 +5,7 @@
 2,Aug,28,Wed,Image processing,S03-Image-Processing-A,Ch. 3,,Thinking in Frequency
 3,Sep,2,Mon,"No classes, Labor Day",TBD,,,"No classes, Labor Day"
 3,Sep,4,Wed,Convolutional Neural Networks,S03-Deep-Learning,TBD,,Interest points and corners
-4,Sep,9,Mon,Image processing,TBD,Ch. 3,"1 due, 2 out",
+4,Sep,9,Mon,Image processing,S03-Image-Processing-B,Ch. 3,"1 due, 2 out",
 4,Sep,11,Wed,Feature detection and matching,TBD,Ch. 4,,Local image features
 5,Sep,16,Mon,Feature detection and matching,TBD,Ch. 4,,"Model fitting, Hough Transform"
 5,Sep,18,Wed,Segmentation,TBD,Ch. 5,,RANSAC and transformations
