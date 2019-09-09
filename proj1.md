@@ -16,7 +16,7 @@ title: Project 1 - Image Filtering and Hybrid Images
 * Due: 9/9/2019 11:59PM
 * Project materials including writeup template [proj1_v2.zip](projects/proj1_v2.zip)
 * Hand-in: through [Canvas](https://gatech.instructure.com)
-* Required files: `<your_gt_username>.zip`, `<your_gt_username>.pdf`
+* Required files: `<your_gt_username>.zip`, `<your_gt_username>_proj1.pdf`
 
 ## Overview
 The goal of this assignment is to write an image filtering function and use it to create hybrid images using a simplified version of the SIGGRAPH 2006 [paper](misc/oliva-siggraph-2006.pdf) by Oliva, Torralba, and Schyns. _Hybrid images_ are static images that change in interpretation as a function of the viewing distance. The basic idea is that high frequency tends to dominate perception when it is available but, at a distance, only the low frequency (smooth) part of the signal can be seen. By blending the high frequency portion of one image with the low-frequency portion of another, you get a hybrid image that leads to different interpretations at different distances.
