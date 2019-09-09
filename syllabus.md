@@ -31,6 +31,8 @@ This project is heavily project-based, but there will be a midterm and final, ea
 |---------------|-----|-------|-------|
 |               |     |       | 100%  |
 
+Late policy for this course will be 20% per day late, as discussed on the first day of class and clarified on [Piazza](https://piazza.com/class/jzehgqjjgpz6bb?cid=13).
+
 ### Academic Integrity
 Academic dishonesty will not be tolerated. This includes cheating, lying about course matters, plagiarism, or helping others commit a violation of the Honor Code. Plagiarism includes reproducing the words of others without both the use of quotation marks and citation. Students are reminded of the obligations and expectations associated with the Georgia Tech Academic Honor Code and Student Code of Conduct, available online at www.honor.gatech.edu. For quizzes, no supporting materials are allowed (notes, calculators, phones, etc).
 
