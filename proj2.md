@@ -26,7 +26,7 @@ The goal of this assignment is to create a local feature matching algorithm usin
 This project is intended to further familiarize you with Python, PyTorch, and local feature matching. Once again, you may find these resources helpful. Python: [here](https://docs.python.org/3/tutorial/). PyTorch: [here](https://pytorch.org/tutorials/).
 
 ## Setup
-Note that the same environment used in project 1 can be used for this project!!! If you already have a working environment, just activate it and you are all set, no need to redo these steps! If you run into import module errors, try "pip install -e." again, and if that still doesn't work, you may have to create a fresh environment.
+Note that the same environment used in project 1 can be used for this project!!! If you already have a working environment, just activate it and you are all set, no need to redo these steps! If you run into import module errors, try "pip install -e ." again, and if that still doesn't work, you may have to create a fresh environment.
 
 1. Install [Miniconda](https://conda.io/miniconda.html). It doesn't matter whether you use Python 2 or 3 because we will create our own environment that uses 3 anyways.
 2. Create a conda environment using the appropriate command. On Windows, open the installed "Conda prompt" to run the command. On MacOS and Linux, you can just use a terminal window to run the command, Modify the command based on your OS (`linux`, `mac`, or `win`): `conda env create -f proj2_env_<OS>.yml`
@@ -46,7 +46,7 @@ Note that the same environment used in project 1 can be used for this project!!!
 
 The original Harris corner detector is described in the lecture materials and Szeliski 4.1.1. See Algorithm 4.1 in the textbook for pseudocode. You do not need to worry about scale invariance or keypoint orientation estimation for your baseline Harris corner detector. The original paper by Chris Harris and Mike Stephens describing their corner detector can be found [here](http://www.bmva.org/bmvc/1988/avc-88-023.pdf). We will be implementing the Harris detector using a Neural Network - HarrisNet. Our network has 5 layers (all of which you will have to implement), described briefly below:
 
-* **ImageGradientsLayer** - retrieves image gradients in each direction . This layer is done for you, but it's using Sobel filter in `get_sobel_xy_parameters` in `torch_layer_utils.py`.
+* **ImageGradientsLayer** - retrieves image gradients in each direction. This layer is already implemented for you, but you'll need to implement `get_sobel_xy_parameters()` in `torch_layer_utils.py` for it to work.
 * **ChannelProductLayer** - returns product between channel of the previous layer $$I_{xx}$$, $$I_{yy}$$ and $$I_{xy}$$.
 * **SecondMomentMatrixLayer** - computes Second Moment Matrix.
 * **CornerResponseLayer** - computes the R cornerness matrix over the entire image.
@@ -120,7 +120,6 @@ This is very important as you will lose 5 points for every time you do not follo
 * 9/27/2019 final submission:
   1. `<your_gt_username>.zip` containing:
     * `proj2_code/` - directory containing all your code for this assignment
-    * `feature_widths.txt` - .txt file containing the best cutoff frequency values you found for each pair of images in `data/`.
     * `additional_data/` - (optional) if you use any data other than the images we provide you, please include them here
     * `README.txt` - (optional) if you implement any new functions other than the ones we define in the skeleton code (e.g. any extra credit implementations), please describe what you did and how we can run the code. We will not award any extra credit if we can't run your code and verify the results.
   2. `<your_gt_username>_proj2.pdf` - your report
