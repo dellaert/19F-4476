@@ -54,7 +54,7 @@ The original Harris corner detector is described in the lecture materials and Sz
 
 After passing images through the entire network, we still need to extract specific coordinates as our interest points, which is done in `get_interest_points()` (you will implement this) in `HarrisNet.py`.
 
-## Part 2: SiftNet
+## Part 2: SIFTNet
 <center>
     <img src="images/proj2/SIFTNet.png">
     <br>
@@ -62,13 +62,13 @@ After passing images through the entire network, we still need to extract specif
     <br><br>
 </center>
 
-You will implement a SIFT-like local feature based on the lecture materials and Szeliski 4.1.2. We will be implementing Sift using a neaural network - SiftNet. This network has 4 layers (which you will have to implement unless specified otherwise), described briefly below:
+You will implement a SIFT-like local feature based on the lecture materials and Szeliski 4.1.2. We will be implementing Sift using a neaural network - SIFTNet. This network has 4 layers (which you will have to implement unless specified otherwise), described briefly below:
 * **ImageGradientsLayer** - computes image gradients in each direction (already implemented for you).
 * **SIFTOrientationLayer** - extracts gradient information along each orientation direction. In the original SIFT, we would be trying to find the contributions of our gradients to each orientation bin. Note that we can do this by trying to find the contribution of each gradient along each orientation vector, which is the same as finding the [projection](https://en.wikipedia.org/wiki/Vector_projection) of our gradients onto our orientation vectors. Recall that this can be done using dot products!
 * **HistogramLayer** - creates weighted histograms over the entire image.
 * **SubGridAccumulationLayer** - creates feature vectors that accumulate histograms from a region.
 
-After passing images through the network we will have feature vectors over the entire image, but we need only want features from the specific interest point locations that we found. This will be done in `get_siftnet_features()` (you will implement this) in `SiftNet.py`.
+After passing images through the network we will have feature vectors over the entire image, but we need only want features from the specific interest point locations that we found. This will be done in `get_SIFTNet_features()` (you will implement this) in `SIFTNet.py`.
 
 ## Part 3: Feature Matching
 You will implement the "ratio test" or "nearest neighbor distance ratio test" method of matching local features as described in the lecture materials and Szeliski 4.1.3. See equation 4.18 in particular. You will implement this in `student_feature_matching.py`. The potential matches that pass the ratio test the easiest should have a greater tendency to be correct matches--think about why.
@@ -94,6 +94,7 @@ We have provided a set of tests for you to evaluate your implementation. We have
 * up to 5 pts: The simplest thing to do is to experiment with the numerous SIFT parameters: How big should each feature be? How many local cells should it have? How many orientations should each histogram have? Different normalization schemes can have a significant effect as well. Don't get lost in parameter tuning though.
 * up to 5 pts: Speeding up the entire pipeline to be faster than our solution.
 * up to 5 pts: Annotating and testing on your own images (provide visualizations as well).
+* up to 5 pts: Try the adaptive non-maximum suppression discussed in the textbook. Please implement this as a separate layer (i.e. write a new layer called `ANMSLayer` instead of implementing inside of `NMSLayer`)!
 
 There is a max of 10 pts of extra credit for every student.
 
@@ -106,7 +107,7 @@ If you choose to do anything extra, add slides _after the slides given in the te
 
 ## Rubric
 * +35 pts: `HarrisNet` implementation in `HarrisNet.py` (the final score for this section will be an average of your implementations from the 9/18 and 9/27 submissions)
-* +35 pts: `SiftNet` implementation in `SiftNet.py`
+* +35 pts: `SIFTNet` implementation in `SIFTNet.py`
 * +10 pts: Feature matching implementation in `student_feature_matching.py`
 * +20 pts: Report with several examples of hybrid images
 * -5\*n pts: Lose 5 points for every time you do not follow the instructions for the hand-in format.
