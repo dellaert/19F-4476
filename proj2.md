@@ -16,9 +16,11 @@ title: Project 2 - Local Feature Matching
 * Due:
   * 9/18/2019 11:59PM - Part 1 intermediate deliverable
   * 9/27/2019 11:59PM - Entire project (the final score for your HarrisNet implementation will be an average of your HarrisNet in the 9/18 and 9/27 submissions)
-* Project materials including writeup template [proj2_v1.zip](projects/proj2_v1.zip)
+* Project materials including writeup template [proj2_v2.zip](projects/proj2_v2.zip)
 * Hand-in: through [Canvas](https://gatech.instructure.com)
-* Required files: `<your_gt_username>.zip`, `<your_gt_username>_proj2.pdf`
+* Required files:
+  * Intermediate: `HarrisNet.py`
+  * Final: `<your_gt_username>.zip`, `<your_gt_username>_proj2.pdf`
 
 ## Overview
 The goal of this assignment is to create a local feature matching algorithm using techniques described in Szeliski chapter 4.1. The pipeline we suggest is based on a simplified version of the famous SIFT pipeline. However, we will not be implementing this in the classical fashion. We will be implementing it as though it were part of a neural network. The matching pipeline is intended to work for instance-level matching -- multiple views of the same physical scene.
@@ -119,7 +121,7 @@ This is very important as you will lose 5 points for every time you do not follo
   1. `HarrisNet.py`
 * 9/27/2019 final submission:
   1. `<your_gt_username>.zip` containing:
-    * `proj2_code/` - directory containing all your code for this assignment
+    * `proj2_code/` - directory containing all your code for this assignment (including `HarrisNet.py`!)
     * `additional_data/` - (optional) if you use any data other than the images we provide you, please include them here
     * `README.txt` - (optional) if you implement any new functions other than the ones we define in the skeleton code (e.g. any extra credit implementations), please describe what you did and how we can run the code. We will not award any extra credit if we can't run your code and verify the results.
   2. `<your_gt_username>_proj2.pdf` - your report
