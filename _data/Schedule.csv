@@ -6,9 +6,9 @@
 3,Sep,2,Mon,"No classes, Labor Day",-,,
 3,Sep,4,Wed,Convolutional Neural Networks,S03-Deep-Learning,,
 4,Sep,9,Mon,Image processing,S03-Image-Processing-B,Ch. 3,1 due
-4,Sep,11,Wed,Fourier transform,,Ch. 4,2 out
+4,Sep,11,Wed,Fourier transform,-,Ch. 4,2 out
 5,Sep,16,Mon,Feature detection (Harris),S04-Features-A,Ch. 4,
-5,Sep,18,Wed,Feature Descriptors (SIFT),S04-Features-B,Ch. 4,2a due on Fri
+5,Sep,18,Wed,Feature Descriptors (SIFT),S04-Features-B,Ch. 5,2a due on Fri
 6,Sep,23,Mon,Segmentation,-,Ch. 5,
 6,Sep,25,Wed,Feature-based alignment,-,Ch. 6,2b due on Fri
 7,Sep,30,Mon,Feature-based alignment,-,Ch. 6,3 out
