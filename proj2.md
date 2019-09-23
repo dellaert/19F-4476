@@ -17,10 +17,10 @@ title: Project 2 - Local Feature Matching
   * 9/20/2019 11:59PM - Part 1 intermediate deliverable
   * 9/27/2019 11:59PM - Entire project (the final score for your HarrisNet implementation will be an average of your HarrisNet in the 9/18 and 9/27 submissions)
 * Project materials including writeup template [proj2_v3.zip](projects/proj2_v3.zip)
-* Hand-in: through [Canvas](https://gatech.instructure.com)
+* Hand-in: through [Canvas](https://gatech.instructure.com) AND [Gradescope](https://www.gradescope.com)
 * Required files:
   * Intermediate: `HarrisNet.py`
-  * Final: `<your_gt_username>.zip`, `<your_gt_username>_proj2.pdf`
+  * Final: `<your_gt_username>.zip` on Canvas, `<your_gt_username>_proj2.pdf` on Gradescope
 
 ## Overview
 The goal of this assignment is to create a local feature matching algorithm using techniques described in Szeliski chapter 4.1. The pipeline we suggest is based on a simplified version of the famous SIFT pipeline. However, we will not be implementing this in the classical fashion. We will be implementing it as though it were part of a neural network. The matching pipeline is intended to work for instance-level matching -- multiple views of the same physical scene.
@@ -36,7 +36,7 @@ Note that the same environment used in project 1 can be used for this project!!!
 4. Install the project package, by running `pip install -e .` inside the repo folder.
 5. Run the notebook using `jupyter notebook ./proj2_code/proj2.ipynb`
 6. Ensure that all sanity checks are passing by running `pytest unit_tests` inside the repo folder.
-7. Generate the zip folder for the code portion of your submission once you've finished the project using `python zip_submission.py --gt_username <your_gt_username>` (don't forget to submit your report, too!).
+7. Generate the zip folder for the code portion of your submission once you've finished the project using `python zip_submission.py --gt_username <your_gt_username>` and submit to Canvas (don't forget to submit your report to Gradescope!).
 
 ## Part 1: HarrisNet
 <center>
@@ -113,7 +113,7 @@ If you choose to do anything extra, add slides _after the slides given in the te
 * +35 pts: `HarrisNet` implementation in `HarrisNet.py` (the final score for this section will be an average of your implementations from the 9/18 and 9/27 submissions)
 * +35 pts: `SIFTNet` implementation in `SIFTNet.py`
 * +10 pts: Feature matching implementation in `student_feature_matching.py`
-* +20 pts: Report with several examples of hybrid images
+* +20 pts: PDF report
 * -5\*n pts: Lose 5 points for every time you do not follow the instructions for the hand-in format.
 
 ## Submission Format
@@ -122,13 +122,13 @@ This is very important as you will lose 5 points for every time you do not follo
 * 9/20/2019 intermediate submission:
   1. `HarrisNet.py`
 * 9/27/2019 final submission:
-  1. `<your_gt_username>.zip` containing:
+  1. `<your_gt_username>.zip` via **Canvas** containing:
     * `proj2_code/` - directory containing all your code for this assignment (including `HarrisNet.py`!)
     * `additional_data/` - (optional) if you use any data other than the images we provide you, please include them here
     * `README.txt` - (optional) if you implement any new functions other than the ones we define in the skeleton code (e.g. any extra credit implementations), please describe what you did and how we can run the code. We will not award any extra credit if we can't run your code and verify the results.
-  2. `<your_gt_username>_proj2.pdf` - your report
+  2. `<your_gt_username>_proj2.pdf` via **Gradescope** - your report
 
-Do <u>not</u> install any additional packages inside the conda environment. The TAs will use the same environment as defined in the config files we provide you, so anything that's not in there by default will probably cause your code to break during grading. Do <u>not</u> use absolute paths in your code or your code will break. Use relative paths like the starter code already does. Failure to follow any of these instructions will lead to point deductions. Create the zip file using `python zip_submission.py --gt_username <your_gt_username>` (it will zip up the appropriate directories/files for you!) and hand it in with your PDF through Canvas.
+Do <u>not</u> install any additional packages inside the conda environment. The TAs will use the same environment as defined in the config files we provide you, so anything that's not in there by default will probably cause your code to break during grading. Do <u>not</u> use absolute paths in your code or your code will break. Use relative paths like the starter code already does. Failure to follow any of these instructions will lead to point deductions. Create the zip file using `python zip_submission.py --gt_username <your_gt_username>` (it will zip up the appropriate directories/files for you!) and hand it through Canvas. Remember to submit your report as a PDF to Gradescope as well.
 
 ## Credits
 Assignment developed by Cusuh Ham, John Lambert, Patsorn Sangkloy, Vijay Upadhya, Samarth Brahmbhatt, Frank Dellaert, and James Hays based on a similar project by Derek Hoiem.
