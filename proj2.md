@@ -79,6 +79,8 @@ You will implement the "ratio test" or "nearest neighbor distance ratio test" me
 
 We provide you with 3 pairs of pictures of the Notre Dame, Mt. Rushmore, and the Episcopal Palace(which we refer to as Gaudi). Each image in a pair is of the same object but from a slightly different viewpoint, and was taken under differing conditions. These images will be run through the entire local feature matching pipeline, first extracting interest points, then extracting features, and finally feature matching to get correspondences across images. The image at the top of the page is what the final evaluation looks like. Interest points are matched across images and correct ones (according to an annotated ground truth) are marked with green lines and incorrect with red. You are also free to test images of your own, you will just have to annotate them with a script we provide you with in the annotate_correspondences folder.
 
+_Your accuracy on the Notre Dame image pair must be at least 80% for the 100 most confident matches to receive full credit!_
+
 
 **Potentially useful NumPy Python library) or pytorch functions**: There are more details for these in each specific function header.
 
