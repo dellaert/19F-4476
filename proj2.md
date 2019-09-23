@@ -14,7 +14,7 @@ title: Project 2 - Local Feature Matching
 
 ## Brief
 * Due:
-  * 9/18/2019 11:59PM - Part 1 intermediate deliverable
+  * 9/20/2019 11:59PM - Part 1 intermediate deliverable
   * 9/27/2019 11:59PM - Entire project (the final score for your HarrisNet implementation will be an average of your HarrisNet in the 9/18 and 9/27 submissions)
 * Project materials including writeup template [proj2_v3.zip](projects/proj2_v3.zip)
 * Hand-in: through [Canvas](https://gatech.instructure.com)
@@ -119,7 +119,7 @@ If you choose to do anything extra, add slides _after the slides given in the te
 ## Submission Format
 This is very important as you will lose 5 points for every time you do not follow the instructions. You will have two separate submissions on Canvas for this project:
 
-* 9/18/2019 intermediate submission:
+* 9/20/2019 intermediate submission:
   1. `HarrisNet.py`
 * 9/27/2019 final submission:
   1. `<your_gt_username>.zip` containing:
