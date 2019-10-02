@@ -37,42 +37,137 @@ Note that the same environment used in projects 1 and 2 can be used for this pro
 
 
 ### Introduction
-Estimating the geometry of a 3D scene, e.g. the position of the camera relative to a known object, can be done if the camera parameters are known. However, this is limited since from a single view scene structure and depth are inherently ambiguous. The importance of knowing camera parameters will become more clear in Part 2 where you will use multiple views. Recall that for a pinhole camera model, the camera matrix $$ P \in \mathbb{R}^{3\times4} $$ is a projective mapping from world (3D) to pixel (2D) coordinates defined up to a scale
-<center>
-    <img src="images/proj3/Pm.png">
-    <br>
-    <br><br>
-</center>
-The camera matrix can also be decomposed into intrinsic parameters $$ \mathbf{K} $$ and extrinsic paramters $$ \mathbf{R}^T[\mathbf{I}\;|\; -\mathbf{c}] $$.
-<center>
-    <img src="images/proj3/Pk.png">
-    <br>
-    <br><br>
-</center>
-Let's look more carefully into what each of the individual parts of the decomposed matrix mean. The homogenous vector coordinates $$ (x_w, y_w, z_w,1) $$ of $$ \mathbf{x}_W $$ indicate the position of a point in 3D space in the *world* coordinate system. The matrix $$ [\mathbf{I}\;|\; -\mathbf{c}] $$ represents a translation and the matrix $$ \mathbf{R}^T $$ represents a rotation, when combined they convert points from the world to the camera coordinate system. An intuitive way to understand this is to think about how aligning the axes of the world coordinate system to the ones of the camera coordinate system can be done with a rotation and a translation.
+Estimating the geometry of a 3D scene, e.g. the position of the camera relative to a known object, can be done if the camera parameters are known. However, this is limited since from a single view scene structure and depth are inherently ambiguous. The importance of knowing camera parameters will become more clear in Part 2 where you will use multiple views. Recall that for a pinhole camera model, the camera matrix $$ P \in \mathbb{R}^{3\times4} $$ is a projective mapping from world (3D) to pixel (2D) coordinates defined up to a scale.
+
+$$
+\begin{align}
+\mathbf{x} = f(\mathbf{X}_w;\mathbf{P}) = \mathbf{P}\mathbf{X}_w =
+\begin{bmatrix}
+    u \\
+    v \\
+    1
+\end{bmatrix}
+\cong
+\begin{bmatrix}
+    s \cdot u \\
+    s \cdot v \\
+    s
+\end{bmatrix}
+=
+\begin{bmatrix}
+p_{11} & p_{12} & p_{13} & p_{14} \\
+p_{21} & p_{22} & p_{23} & p_{24} \\
+p_{31} & p_{32} & p_{33} & p_{34} \\
+\end{bmatrix}
+\begin{bmatrix}
+    x_w \\
+    y_w \\
+    z_w \\
+    1
+\end{bmatrix}.
+\end{align}
+$$
+
+
+The camera matrix can also be decomposed into intrinsic parameters $$\mathbf{K}$$ and extrinsic parameters $$\mathbf{R}^T\left[\mathbf{I}\mid -\mathbf{t}  \right]$$.
+
+
+$$\mathbf{P} = \mathbf{K}\mathbf{R}^T[\mathbf{I}\;|\; -\mathbf{t}].$$
+
+$$
+\mathbf
+{P}=
+\begin{bmatrix}
+    \alpha & s & u_0 \\
+    0 & \beta & v_0 \\
+    0 & 0 & 1
+\end{bmatrix}
+\begin{bmatrix}
+r_{11} & r_{12} & r_{13} & t_x \\
+r_{21} & r_{22} & r_{23} & t_y \\
+r_{31} & r_{32} & r_{33} & t_z
+\end{bmatrix}
+=
+\begin{bmatrix}
+    \alpha & s & u_0 \\
+    0 & \beta & v_0 \\
+    0 & 0 & 1
+\end{bmatrix}
+\begin{bmatrix}
+r_{11} & r_{12} & r_{13} \\
+r_{21} & r_{22} & r_{23} \\
+r_{31} & r_{32} & r_{33}
+\end{bmatrix}
+\begin{bmatrix}
+1 & 0 & 0 & t_x \\
+0 & 1 & 0 & t_y \\
+0 & 0 & 1 & t_z
+\end{bmatrix}
+$$
+
+
+Let's look more carefully into what each of the individual parts of the decomposed matrix mean. The homogenous vector coordinates $$(x_w, y_w, z_w,1)$$ of $$\mathbf{X}_w$$ indicate the position of a point in 3D space in the *world* coordinate system. The matrix $$[\mathbf{I}\;\mid\; -\mathbf{t}]$$ represents a translation and the matrix $$\mathbf{R}^T$$ represents a rotation, when combined they convert points from the world to the camera coordinate system. An intuitive way to understand this is to think about how aligning the axes of the world coordinate system to the ones of the camera coordinate system can be done with a rotation and a translation.
+
+
 <center>
     <img src="images/proj3/coordiante_systems.png">
     <br>
     Distinction between camera coordinate and world coordinate systems is a rotation and a translation
     <br><br>
 </center>
+
 In this part of the project you will learn how to estimate the projection matrix using objective function minimization, how you can decompose the camera matrix and what knowing these lets you do.
 
-### Part 1.1 Estimating the Projection Matrix
-A camera projection matrix maps points from 3D into 2D. How can we use this to estimate its parameters? Assume that we have $$ N $$ known 2D-3D correspondences for a set of points, that is, for $$ S=s_1, s_2, \dots, s_N $$ we have both access to their respective 3D coordinates $$ \mathbf{x}_W^{i} $$ and 2D coordinates $$ \mathbf{x}^{i} $$. Let $$ \tilde{\mathbf{P}} $$ be an estimation for the camera projection matrix. We can determine how accurate the estimation is by measuring the *reprojection error* $$ \sum_{i=1}^N ||\tilde{\mathbf{P}}\mathbf{x}_W^i-\mathbf{x}^i ||_2 $$ between the 3D points projected into 2D $$ \tilde{\mathbf{P}}\mathbf{x}_W^i $$ and the known 2D points $$ \mathbf{x}^i $$. Therefore we can estimate the projection matrix itself by minimizing the reprojection error with respect to the projection matrix $$
-\underset{\tilde{\mathbf{P}}}{\arg\min}\sum_{i=1}^N ||\tilde{\mathbf{P}}\mathbf{x}_W^i-\mathbf{x}^i ||_2 . $$
-You will implement a function *reprojection(x)* that takes as input camera parameters as a vector, loads point correspondences, performs projection given *x* and outputs the reprojection error.
+### Part 1.1 Implement Camera Projection
 
-Note: Since $$ \mathbf{P} $$ is defined up to scale, in order to perform this minimization you will need to set $$ \mathbf{P}_{3,4}=1 $$.
-### Part 1.2 Decomposing the Projection Matrix
+In `student_code.py` you will implement camera projection in the `projection(P, points_3d)` from homogenous world coordinates $$X_i = [X_i, Y_i, Z_i, 1]$$ to non-homogenous pixel coordinates $$x_i, y_i$$.
+
+It will be helpful to recall the equations to convert to pixel coordinates
+
+
+$$
+\begin{align}
+x_i = \frac{p_{11}X_i+p_{12}Y_i + p_{13}Z_i + p_{14}}{p_{31}X_i+p_{32}Y_i + p_{33}Z_i + p_{34}} \quad y_i = \frac{p_{21}X_i+p_{22}Y_i + p_{23}Z_i + p_{24}}{p_{31}X_i+p_{32}Y_i + p_{33}Z_i + p_{34}}.
+\end{align}
+$$
+
+
+### Part 1.2 Implement Objective Function
+
+A camera projection matrix maps points from 3D into 2D. How can we use this to estimate its parameters? Assume that we have $$ N $$ known 2D-3D correspondences for a set of points, that is, for $$ S=s_1, s_2, \dots, s_N $$ we have both access to their respective 3D coordinates $$ \mathbf{x}_W^{i} $$ and 2D coordinates $$ \mathbf{x}^{i} $$. Let $$ \hat{\mathbf{P}} $$ be an estimation for the camera projection matrix. We can determine how accurate the estimation is by measuring the *reprojection error* 
+
+$$ \sum_{i=1}^N (\tilde{\mathbf{P}}\mathbf{x}_W^i-\mathbf{x}^i )^2 $$
+
+between the 3D points projected into 2D $$ \hat{\mathbf{P}}\mathbf{x}_W^i $$ and the known 2D points $$ \mathbf{x}^i $$. Therefore we can estimate the projection matrix itself by minimizing the reprojection error with respect to the projection matrix 
+
+$$\underset{\hat{\mathbf{P}}}{\arg\min}\sum_{i=1}^N (\hat{\mathbf{P}}\mathbf{x}_W^i-\mathbf{x}^i )^2 . $$
+
+In order to avoid solutions that are not useful such as $$\mathbf{P}=0$$ which are also minima of the function, you will have to fix $$\mathbf{P}_{34=1}$$.
+
+
+In this part, in `student_code.py` you will implement the objective function `objective_function()` that will be passed to `scipy.optimize.least_squares` for minimization with the Levenberg-Marquardt algorithm. 
+
+### Part 1.3: Estimating the Projection Matrix Given Point Correspondences
+Optimizing the reprojection loss using Levenberg-Marquardt requires a good initial estimate for $$\mathbf{P}$$. This can be done by having good initial estimates for $$\mathbf{K}$$ and $$\mathbf{R}^T$$ and $$\mathbf{t}$$ which you can multiply to then generate your estimated $$\mathbf{K}$$. In this part, to make sure that you have the least squares optimization working properly we will provide you with an initial estimate. In the function you will have to implement in this part, `estimate_projection_matrix()`, you will have to pass the initial guess to `scipy.optimize.least_squares` and get the appropriate output. 
+
+### Part 1.4 Decomposing the Projection Matrix
 Recall that 
-$$ \mathbf{P} =\mathbf{K}\mathbf{R}^T[\mathbf{I}\;|\; -\mathbf{c}].$$
-Rewriting this gives us 
-$$ \mathbf{P} =[\mathbf{K}\mathbf{R}^T\;|\; \mathbf{K}\mathbf{R}^T -\mathbf{c}] = [\mathbf{M}\;|\; \mathbf{M}-\mathbf{c}]. $$
-Where $$ \mathbf{M} = \mathbf{K}\mathbf{R}^T $$ is the first 3 columns of $$ \mathbf{P} $$. We will provide you code that will perform an operation called \textit{RQ decomposition} which will decompose $$ \mathbf{M} $$ into an upper triangular matrix $$ \mathbf{R} $$ and an orthonormal matrix $$ \mathbf{Q} $$ such that $$ \mathbf{RQ} = \mathbf{M} $$, where the upper triangular matrix will correspond to $$ \mathbf{K} $$ and the ortonormal matrix to $$ \mathbf{R}^T $$. In this part of the project you will need to get the appropriate matrix elements of $$ \mathbf{P} $$ to perform the RQ decomposition, which will be code provided by us.
+$$ \mathbf{P} =\mathbf{K}\mathbf{R}^T[\mathbf{I}\;|\; -\mathbf{t}].$$
+Rewriting this gives us
 
-### Part 1.3 -- Camera Matrix Estimation in Practice
-In parts 1.1 and 1.2 you were given a set of known points in world coordinates. In this part of the assignment you will learn how to use a fiducial---an object of known size that can be used as a reference. Any object for which you have measured the size given some unit (in this project you should use centimeters).
+$$ \mathbf{P} =[\mathbf{K}\mathbf{R}^T\;|\; \mathbf{K}\mathbf{R}^T -\mathbf{t}] = [\mathbf{M}\;|\; \mathbf{M}-\mathbf{t}]. $$
+
+
+Where $$ \mathbf{M} = \mathbf{K}\mathbf{R}^T $$ is the first 3 columns of $$ \mathbf{P} $$. An operation known as *RQ decomposition* which will decompose $$ \mathbf{M} $$ into an upper triangular matrix $$ \mathbf{R} $$ and an orthonormal matrix $$ \mathbf{Q} $$ such that $$ \mathbf{RQ} = \mathbf{M} $$, where the upper triangular matrix will correspond to $$ \mathbf{K} $$ and the ortonormal matrix to $$ \mathbf{R}^T $$. In this part you will implement `decompose_camera_matrix(P)` where you will need to get the appropriate matrix elements of $$ \mathbf{P} $$ to perform the RQ decomposition, and make the appropriate function call to `scipy.linalg.rq()`.
+
+### Part 1.5 Calculating the Camera Center
+
+In this part in `student_code.py` you will implement `calculate_camera_center(P, K, R)` that takes as input the
+projection $$\mathbf{P}$$, intrinsic $$\mathbf{K}$$ and rotation $$\mathbf{R}^T$$ matrix and outputs the camera position in world coordinates. 
+
+### Part 1.6: Taking Your Own Images and Estimating the Projection Matrix + Camera Pose
+
+In part 1.3 you were given a set of known points in world coordinates. In this part of the assignment you will learn how to use a fiducial---an object of known size that can be used as a reference. Any object for which you have measured the size given some unit (in this project you should use centimeters).
 <center>
     <img src="images/proj3/projection_figure.png">
     <br>
@@ -80,11 +175,11 @@ In parts 1.1 and 1.2 you were given a set of known points in world coordinates. 
     <br><br>
 </center>
 
-Figure 1 illustrates how a cuboid of known dimension can be used to create a world coordinate system and a set of points with known 3D location. Choose an object that you will use as a fiducial (we recommend using a thick textbook) and measure it. Using a camera capture an image of the object. Now that you have the dimension of your object (3D points) you can use the (appropriate place in the IPython notebook) to find the image coordinates of the 3D points create your own 2D - 3D correspondences for each image. For each of your 3 images, using your code from parts 1.1 and 1.2 you should be able to estimate the camera position relative to the world coordinate frame you chose, and then visualize this in the IPython notebook. When taking the image, try to estimate the position of the camera lens on your phone in the world coordinate system in the same units you used to measure the book.
+The figure above illustrates how a cuboid of known dimension can be used to create a world coordinate system and a set of points with known 3D location. Choose an object that you will use as a fiducial (we recommend using a thick textbook) and measure it. Using a camera capture two images of the object (you will estimate the camera parameters for both images) keeping in mind the considerations discussed in class for part 2 and fundamental matrix estimation if you want to reuse these images. When taking the images, try to estimate the pose of the camera lens of your phone in the world coordinate system.
 
-  * In part 1.2 you decomposed the camera matrix into $$ \mathbf{KR^T} $$. How can we use this decomposition to estimate the camera center? Since <img src="images/proj3/pkr.png"> this implies that <img src="images/proj3/krp.png">, therefore the last column of this result is the camera center $$ -\mathbf{c} $$. Using this derivation will implement a function *find_camera_center* that takes as input a projection matrix $$ \mathbf{P} $$ and outputs the camera center in world coordinates.
- * Using your initial guess for the location of the camera lens, you will also implement a unit test that will test whether your estimated camera position is within a sphere of 5cm radius from your calculated camera center $$ -\mathbf{c} $$
- * What would happen to the projected points if you increased/decreased the $$ x $$ coordinate, or the other coordinates of the camera center? Write down a description of your expectations. Perform this shift for each of the camera coordinates and then recompose the projection matrix and visualize the result in your IPython notebook. Was the visualized result what you expected?
+Now that you have the dimension of your object (3D points) you can use the  the IPython notebook to find the image coordinates of the 3D points create your own 2D - 3D correspondences for each image. For each of your 2 images, make initial estimates for $$\mathbf{P}$$ and if your estimate is good, using your code from the previous part you should be able to estimate both the the projection matrix and the camera pose, and use the code available in the IPython notebook to visualize your findings.
+
+What would happen to the projected points if you increased/decreased the $$ x $$ coordinate, or the other coordinates of the camera center $$\mathbf{t}$$? Write down a description of your expectations in the appropriate part of your writeup submission. Perform this shift for each of the camera coordinates and then recompose the projection matrix and visualize the result in your IPython notebook. Was the visualized result what you expected?
 
 ## PART II - Fundamental Matrix Estimation
 Now that we know how to project a point from a 3D coordinate to a 2D coordinate, next we’ll look at how to map corresponding 2D points from two images of the same scene. In this part, given a set of corresponding 2D points, we will do calculations to estimate the fundamental matrix. You can think of the fundamental matrix as something that projects points from one scene onto a line in the other scene. The fundamental matrix projects onto a line because a point in one image is only defined up to a scale, which means we can’t actually know the “depth” of that point. As such, from the viewpoint of the other camera, we can see the entire “line” that our first point could exist on.
