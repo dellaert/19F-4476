@@ -240,7 +240,7 @@ You'll need to give as input: the objective function, your initial estimate of t
 
 Similar to Part 1, you'll have to take two images of the same scene and estimate the fundamental matrix between the two images. Recall that these two images must be from different positions, and you cannot simply just rotate the camera or zoom the image. You'll have to save the images in the same project folder and use the Jupyter notebook to run your fundamental matrix estimator on your images.
 
-## Report
+### Report
 
 * Why is it that when you take your own images, you can't just rotate the camera or zoom the image for your two images of the same scene?
 * Why is it that points in one image are projected by the fundamental matrix onto epipolar *lines* in the other image?
@@ -259,13 +259,11 @@ We will use a method called RANdom SAmple Consensus (RANSAC) to search through t
 In summary, we will implement a workflow using the SIFTNet from project 2 to extract feature points, then RANSAC will select a random subset of those points, you will call your function from Part 2 to calculate the fundamental matrix $$F$$ for those points, and check how many other points identified by SIFTNet match $$F$$. Then you will iterate through this process until you find the subset of points that produces the best fundamental matrix $$F$$ with the most matching points.
 
 ### Report Questions
-*put these answers in your report*
+_Put these answers in your report!_
 
-How many RANSAC iterations would we need to find the fundamental matrix with 99.9% certainty from your Mount Rushmore and Notre Dame SIFTNet results assuming that they had a 90% point correspondence accuracy?
-
-One might imagine that if we had more than 9 point correspondences, it would be better to use more of them to solve for the fundamental matrix. Investigate this by finding the number of RANSAC iterations you would need to run with 18 points.
-
-If our dataset had a lower point correspondence accuracy, say 70%, what is the minimum number of iterations needed to find the fundamental matrix with 99.9% certainty?
+* How many RANSAC iterations would we need to find the fundamental matrix with 99.9% certainty from your Mount Rushmore and Notre Dame SIFTNet results assuming that they had a 90% point correspondence accuracy?
+* One might imagine that if we had more than 9 point correspondences, it would be better to use more of them to solve for the fundamental matrix. Investigate this by finding the number of RANSAC iterations you would need to run with 18 points.
+* If our dataset had a lower point correspondence accuracy, say 70%, what is the minimum number of iterations needed to find the fundamental matrix with 99.9% certainty?
 
 At the end of this assignment you will be performing RANSAC to find the fundamental matrix for an image pair that you create, and you will want to keep the estimated accuracy of your point correspondences in mind when deciding how many iterations are appropriate.
 
@@ -284,14 +282,14 @@ If you choose to do anything extra, add slides _after the slides given in the te
 
 ## Rubric
 * +66 pts: Code
- * 22 pts: Part 1
- * 22 pts: Part 2
- * 22 pts: Part 3
+  * 22 pts: Part 1
+  * 22 pts: Part 2
+  * 22 pts: Part 3
 * +34 pts: PDF report
- * 10 pts: Part 1
- * 10 pts: Part 2
- * 10 pts: Part 3
- * 4 pts: conclusions and tests screenshot
+  * 10 pts: Part 1
+  * 10 pts: Part 2
+  * 10 pts: Part 3
+  * 4 pts: Conclusions and tests screenshot
 * -5\*n pts: Lose 5 points for every time you do not follow the instructions for the hand-in format.
 
 ## Submission Format
