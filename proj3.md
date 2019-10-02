@@ -38,7 +38,7 @@ Note that the same environment used in projects 1 and 2 can be used for this pro
 
 
 ### Introduction
-Estimating the geometry of a 3D scene, e.g. the position of the camera relative to a known object, can be done if the camera parameters are known. However, this is limited since from a single view scene structure and depth are inherently ambiguous. The importance of knowing camera parameters will become more clear in Part 2 where you will use multiple views. Recall that for a pinhole camera model, the camera matrix $$ P \in \mathbb{R}^{3\times4} $$ is a projective mapping from world (3D) to pixel (2D) coordinates defined up to a scale.
+In this first part you will perform pose estimation in an image taken by an uncalibrated camera. Pose estimation is incredibly useful, as we saw in class: it is used in VR, AR, controller tracking, autonomous driving, and even satellite docking. Recall that for a pinhole camera model, the camera matrix $$ P \in \mathbb{R}^{3\times4} $$ is a projective mapping from world (3D) to pixel (2D) coordinates defined up to a scale.
 
 $$
 \begin{align}
@@ -70,7 +70,7 @@ p_{31} & p_{32} & p_{33} & p_{34} \\
 $$
 
 
-The camera matrix can also be decomposed into intrinsic parameters $$\mathbf{K}$$ and extrinsic parameters $$\mathbf{R}^T\left[\mathbf{I}\mid -\mathbf{t}  \right]$$.
+Above $$s$$ is an arbitrary scale factor. The camera matrix can also be decomposed into intrinsic parameters $$\mathbf{K}$$ and extrinsic parameters $$\mathbf{R}^T\left[\mathbf{I}\mid -\mathbf{t}  \right]$$.
 
 
 $$\mathbf{P} = \mathbf{K}\mathbf{R}^T[\mathbf{I}\;|\; -\mathbf{t}].$$
@@ -78,17 +78,6 @@ $$\mathbf{P} = \mathbf{K}\mathbf{R}^T[\mathbf{I}\;|\; -\mathbf{t}].$$
 $$
 \mathbf
 {P}=
-\begin{bmatrix}
-    \alpha & s & u_0 \\
-    0 & \beta & v_0 \\
-    0 & 0 & 1
-\end{bmatrix}
-\begin{bmatrix}
-r_{11} & r_{12} & r_{13} & t_x \\
-r_{21} & r_{22} & r_{23} & t_y \\
-r_{31} & r_{32} & r_{33} & t_z
-\end{bmatrix}
-=
 \begin{bmatrix}
     \alpha & s & u_0 \\
     0 & \beta & v_0 \\
@@ -121,10 +110,9 @@ In this part of the project you will learn how to estimate the projection matrix
 
 ### Part 1.1 Implement Camera Projection
 
-In `student_code.py` you will implement camera projection in the `projection(P, points_3d)` from homogenous world coordinates $$X_i = [X_i, Y_i, Z_i, 1]$$ to non-homogenous pixel coordinates $$x_i, y_i$$.
+In `student_code.py` you will implement camera projection in the `projection(P, points_3d)` from homogenous world coordinates $$X_i = [X_i, Y_i, Z_i, 1]$$ to non-homogenous image coordinates $$x_i, y_i$$.
 
-It will be helpful to recall the equations to convert to pixel coordinates
-
+Given the projection matrix $$\mathbf{P}$$, the equation that accomplish this are:
 
 $$
 \begin{align}
@@ -135,36 +123,35 @@ $$
 
 ### Part 1.2 Implement Objective Function
 
-A camera projection matrix maps points from 3D into 2D. How can we use this to estimate its parameters? Assume that we have $$ N $$ known 2D-3D correspondences for a set of points, that is, for $$ S=s_1, s_2, \dots, s_N $$ we have both access to their respective 3D coordinates $$ \mathbf{x}_W^{i} $$ and 2D coordinates $$ \mathbf{x}^{i} $$. Let $$ \hat{\mathbf{P}} $$ be an estimation for the camera projection matrix. We can determine how accurate the estimation is by measuring the *reprojection error* 
+A camera projection matrix maps points from 3D into 2D. How can we use this to estimate its parameters? Assume that we have $$ N $$ known 2D-3D correspondences for a set of points, that is, for points with index $$ i= 1\dots N $$ we have both access to the respective 3D coordinates $$ \mathbf{x}_w^{i} $$ and 2D coordinates $$ \mathbf{x}^{i} $$. Let $$ \hat{\mathbf{P}} $$ be an estimation for the camera projection matrix. We can determine how accurate the estimation is by measuring the *reprojection error* 
 
-$$ \sum_{i=1}^N (\tilde{\mathbf{P}}\mathbf{x}_W^i-\mathbf{x}^i )^2 $$
+$$ \sum_{i=1}^N (\hat{\mathbf{P}}\mathbf{x}_w^i-\mathbf{x}^i )^2 $$
 
-between the 3D points projected into 2D $$ \hat{\mathbf{P}}\mathbf{x}_W^i $$ and the known 2D points $$ \mathbf{x}^i $$. Therefore we can estimate the projection matrix itself by minimizing the reprojection error with respect to the projection matrix 
+between the 3D points projected into 2D $$ \hat{\mathbf{P}}\mathbf{x}_w^i $$ and the known 2D points $$ \mathbf{x}^i $$, both in **non-homogenous** coordinates. Therefore we can estimate the projection matrix itself by minimizing the reprojection error with respect to the projection matrix 
 
-$$\underset{\hat{\mathbf{P}}}{\arg\min}\sum_{i=1}^N (\hat{\mathbf{P}}\mathbf{x}_W^i-\mathbf{x}^i )^2 . $$
-
-In order to avoid solutions that are not useful such as $$\mathbf{P}=0$$ which are also minima of the function, you will have to fix $$\mathbf{P}_{34=1}$$.
-
+$$\underset{\hat{\mathbf{P}}}{\arg\min}\sum_{i=1}^N (\hat{\mathbf{P}}\mathbf{x}_w^i-\mathbf{x}^i )^2 . $$
 
 In this part, in `student_code.py` you will implement the objective function `objective_function()` that will be passed to `scipy.optimize.least_squares` for minimization with the Levenberg-Marquardt algorithm. 
+
 
 ### Part 1.3: Estimating the Projection Matrix Given Point Correspondences
 Optimizing the reprojection loss using Levenberg-Marquardt requires a good initial estimate for $$\mathbf{P}$$. This can be done by having good initial estimates for $$\mathbf{K}$$ and $$\mathbf{R}^T$$ and $$\mathbf{t}$$ which you can multiply to then generate your estimated $$\mathbf{K}$$. In this part, to make sure that you have the least squares optimization working properly we will provide you with an initial estimate. In the function you will have to implement in this part, `estimate_projection_matrix()`, you will have to pass the initial guess to `scipy.optimize.least_squares` and get the appropriate output. 
 
+Note: because $$P$$ has only 11 degrees of freedom, we fix $$\mathbf{P}_{34=1}$$.
 ### Part 1.4 Decomposing the Projection Matrix
 Recall that 
-$$ \mathbf{P} =\mathbf{K}\mathbf{R}^T[\mathbf{I}\;|\; -\mathbf{t}].$$
+$$ \mathbf{P} =\mathbf{K}{}_w\mathbf{R}^T_c[\mathbf{I}\;|\; -{}_w\mathbf{t}_c].$$
 Rewriting this gives us
 
-$$ \mathbf{P} =[\mathbf{K}\mathbf{R}^T\;|\; \mathbf{K}\mathbf{R}^T -\mathbf{t}] = [\mathbf{M}\;|\; \mathbf{M}-\mathbf{t}]. $$
+$$ \mathbf{P} =[\mathbf{K}{}_w\mathbf{R}^T_c\;|\; \mathbf{K}{}_w\mathbf{R}^T_c -{}_w\mathbf{t}_c] = [\mathbf{K}{}_c\mathbf{R}_w\;|\; \mathbf{K}{}_c\mathbf{t}_w] = [\mathbf{M}\;|\; \mathbf{K}{}_c\mathbf{t}_w]. $$
 
 
-Where $$ \mathbf{M} = \mathbf{K}\mathbf{R}^T $$ is the first 3 columns of $$ \mathbf{P} $$. An operation known as *RQ decomposition* which will decompose $$ \mathbf{M} $$ into an upper triangular matrix $$ \mathbf{R} $$ and an orthonormal matrix $$ \mathbf{Q} $$ such that $$ \mathbf{RQ} = \mathbf{M} $$, where the upper triangular matrix will correspond to $$ \mathbf{K} $$ and the ortonormal matrix to $$ \mathbf{R}^T $$. In this part you will implement `decompose_camera_matrix(P)` where you will need to get the appropriate matrix elements of $$ \mathbf{P} $$ to perform the RQ decomposition, and make the appropriate function call to `scipy.linalg.rq()`.
+Where $$ \mathbf{M} = \mathbf{K}{}_c\mathbf{R}_w $$ is the first 3 columns of $$ \mathbf{P} $$. An operation known as *RQ decomposition* which will decompose $$ \mathbf{M} $$ into an upper triangular matrix $$ \mathbf{R} $$ and an orthonormal matrix $$ \mathbf{Q} $$ such that $$ \mathbf{RQ} = \mathbf{M} $$, where the upper triangular matrix will correspond to $$ \mathbf{K} $$ and the ortonormal matrix to $$ {}_c\mathbf{R}_w $$. In this part you will implement `decompose_camera_matrix(P)` where you will need to get the appropriate matrix elements of $$ \mathbf{P} $$ to perform the RQ decomposition, and make the appropriate function call to `scipy.linalg.rq()`.
 
 ### Part 1.5 Calculating the Camera Center
 
 In this part in `student_code.py` you will implement `calculate_camera_center(P, K, R)` that takes as input the
-projection $$\mathbf{P}$$, intrinsic $$\mathbf{K}$$ and rotation $$\mathbf{R}^T$$ matrix and outputs the camera position in world coordinates. 
+projection $$\mathbf{P}$$, intrinsic $$\mathbf{K}$$ and rotation $${}_c\mathbf{R}_w$$ matrix and outputs the camera position in world coordinates. 
 
 ### Part 1.6: Taking Your Own Images and Estimating the Projection Matrix + Camera Pose
 
@@ -183,19 +170,16 @@ Now that you have the dimension of your object (3D points) you can use the  the 
 What would happen to the projected points if you increased/decreased the $$ x $$ coordinate, or the other coordinates of the camera center $$\mathbf{t}$$? Write down a description of your expectations in the appropriate part of your writeup submission. Perform this shift for each of the camera coordinates and then recompose the projection matrix and visualize the result in your IPython notebook. Was the visualized result what you expected?
 
 ## PART II - Fundamental Matrix Estimation
-Now that we know how to project a point from a 3D coordinate to a 2D coordinate, next we’ll look at how to map corresponding 2D points from two images of the same scene. In this part, given a set of corresponding 2D points, we will do calculations to estimate the fundamental matrix. You can think of the fundamental matrix as something that projects points from one scene onto a line in the other scene. The fundamental matrix projects onto a line because a point in one image is only defined up to a scale, which means we can’t actually know the “depth” of that point. As such, from the viewpoint of the other camera, we can see the entire “line” that our first point could exist on.
 
-<center>
-    <img src="images/proj3/epipoles.png">
-    <br>
-    https://www.google.com/url?sa=i&source=images&cd=&ved=2ahUKEwiU2vzK2-fkAhXtguAKHSyBDUsQjRx6BAgBEAQ&url=https%3A%2F%2Fslideplayer.com%2Fslide%2F5279455%2F&psig=AOvVaw2QZO15Ap6vXFMJPvnjtGZg&ust=1569354563277107    <br><br>
-</center>
-The fundamental matrix is defined by the following equation:
-<center>
-    <img src="images/proj3/fundm.gif">
-    <br>
-    <br><br>
-</center>
+**Learning Objective:** (1) Understanding the fundamental matrix and estimating it (2) using self capturedd images to estimate your own fundamental matrix 
+
+In this part, given a set of corresponding 2D points, we will estimate the **fundamental matrix**. Now that we know how to project a point from a 3D coordinate to a 2D coordinate, next we’ll look at how to map corresponding 2D points from two images of the same scene. You can think of the fundamental matrix as something that maps points from one view into a line in the other view. We get a line because a point in one image is only *a projection* to 2D,  which means we can’t actually know the “depth” of that point. As such, from the viewpoint of the other camera, we can see the entire “line” that our first point could exist on.
+
+The **fundamental matrix constraint** between two points $$x_0$$ and $x_1$ in the left and right views, respectively, is given by the following equation
+
+
+$$x_0^TFx_1=0$$
+
 
 Where F is the matrix and the two vectors (u, v, 1) and (u’, v’, 1) represent the homogeneous coordinates of our points on our images. (Note: the fundamental matrix is sometimes defined as the transpose of the above matrix with the left and right image points swapped. Both are valid fundamental matrices, but we assume you use the one above.)
 
