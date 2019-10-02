@@ -110,7 +110,7 @@ In this part of the project you will learn how to estimate the projection matrix
 
 ### Part 1.1 -- Implement Camera Projection
 
-In `student_code.py` you will implement camera projection in the `projection(P, points_3d)` from homogenous world coordinates $$X_i = [X_i, Y_i, Z_i, 1]$$ to non-homogenous image coordinates $$x_i, y_i$$.
+In `projection_matrix.py` you will implement camera projection in the `projection(P, points_3d)` from homogenous world coordinates $$X_i = [X_i, Y_i, Z_i, 1]$$ to non-homogenous image coordinates $$x_i, y_i$$.
 
 Given the projection matrix $$\mathbf{P}$$, the equation that accomplish this are:
 
@@ -131,7 +131,7 @@ between the 3D points projected into 2D $$ \hat{\mathbf{P}}\mathbf{x}_w^i $$ and
 
 $$\underset{\hat{\mathbf{P}}}{\arg\min}\sum_{i=1}^N (\hat{\mathbf{P}}\mathbf{x}_w^i-\mathbf{x}^i )^2 . $$
 
-In this part, in `student_code.py` you will implement the objective function `objective_function()` that will be passed to `scipy.optimize.least_squares` for minimization with the Levenberg-Marquardt algorithm. 
+In this part, in `projection_matrix.py` you will implement the objective function `objective_function()` that will be passed to `scipy.optimize.least_squares` for minimization with the Levenberg-Marquardt algorithm. 
 
 
 ### Part 1.3: -- Estimating the Projection Matrix Given Point Correspondences
@@ -150,7 +150,7 @@ Where $$ \mathbf{M} = \mathbf{K}{}_c\mathbf{R}_w $$ is the first 3 columns of $$
 
 ### Part 1.5 -- Calculating the Camera Center
 
-In this part in `student_code.py` you will implement `calculate_camera_center(P, K, R)` that takes as input the
+In this part in `projection_matrix.py` you will implement `calculate_camera_center(P, K, R)` that takes as input the
 projection $$\mathbf{P}$$, intrinsic $$\mathbf{K}$$ and rotation $${}_c\mathbf{R}_w$$ matrix and outputs the camera position in world coordinates. 
 
 ### Part 1.6: -- Taking Your Own Images and Estimating the Projection Matrix + Camera Pose
@@ -214,7 +214,7 @@ $$
 d(l, x) = \frac{au + bv + c}{\sqrt{a^2 + b^2}}
 $$
 
-Where $$ 1 = [a,b,c]$$ is a line and $$x = [u, v, 1]$$ is the homogenous coordinate for the point. You will need to implement this in `point_line_distance()` in `student_code.py`.
+Where $$ 1 = [a,b,c]$$ is a line and $$x = [u, v, 1]$$ is the homogenous coordinate for the point. You will need to implement this in `point_line_distance()` in `fundamental_matrix.py`.
 
 ### Part 2.2 -- Symmetric line-to-point error
 Given a set of matching points $$\{x_0^i, x_1^i\}$$ we can set up the following symmetric line-to-point error function for every match $$(x_0,x_1)$$.
@@ -223,7 +223,7 @@ $$
 d(Fx_1, x_0)^2 + d(F^T x_0, x_1)^2
 $$
 
-where $$d$$ is the distance formula between a line and a point, $$x_0$$ is one of the homogeneous points, $$F$$ is the fundamental matrix, and $$x_1$$ is the other homogeneous point. Above, in the first term we use $$F$$ which maps from the second to the first view, and in second term we use $$F^T$$ which maps from the first to the second view.
+where $$d$$ is the distance formula between a line and a point, $$x_0$$ is one of the homogeneous points, $$F$$ is the fundamental matrix, and $$x_1$$ is the other homogeneous point. Above, in the first term we use $$F$$ which maps from the second to the first view, and in second term we use $$F^T$$ which maps from the first to the second view. SciPy handles the squaring and summing for you so you just need to implement `point_line_distance()`.
 
 By applying this symmetric line-to-point error calculation to every pair of points, we get this equation for the objective function to minimize, as a function of $$F$$:
 
@@ -231,7 +231,7 @@ $$
 J(F) = \sum_i^n \bigg( d(Fx_1^i, x_0^i)^2 + d(F^T x_0^i, x_1^i)^2 \bigg)
 $$
 
-This is the equation you will be implementing in `signed_point_line_errors()` which is in the file `student_code.py`jj.
+This is the equation you will be implementing in `signed_point_line_errors()` which is in the file `fundamental_matrix.py`.
 
 ### Part 2.3 -- Least Squares Optimization
 
