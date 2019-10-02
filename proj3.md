@@ -3,6 +3,13 @@ layout: default
 title: Project 3 - Camera Projection Matrix and Fundamental Matrix Estimation with RANSAC
 ---
 
+<center>
+    <img src="images/proj3/epipole_iphone.png">
+    <br>
+    Epipolar lines showing camera locations given corresponding points in two views of a scene.
+    <br><br>
+</center>
+
 # Project 3 - Camera Projection Matrix and Fundamental Matrix Estimation with RANSAC
 
 ## Brief
@@ -24,12 +31,6 @@ Note that the same environment used in projects 1 and 2 can be used for this pro
 5. Run the notebook using `jupyter notebook ./proj2_code/proj2.ipynb`
 6. Ensure that all sanity checks are passing by running `pytest unit_tests` inside the repo folder.
 7. Generate the zip folder for the code portion of your submission once you've finished the project using `python zip_submission.py --gt_username <your_gt_username>` and submit to Canvas (don't forget to submit your report to Gradescope!).
-
-## Learning Objectives!
- * Optimizing geometric image errors
-  * Projection Matrix (3D <-> 2D)
-  * Fundamental Matrix (points <-> lines, image1 <-> image2)
-  * RANSAC (finding inliers)
 
 ## PART I - Camera Projection Matrix Estimation
 
@@ -232,10 +233,10 @@ Run *python fundamental_matrix.py image_p.jpg image_q.jpg p.txt q.txt* to calcul
 You’ll need to take a screenshot of this and put it in your report later.
 
 ## Part III: RANSAC
-Now you have a function which can calculate the Fundamental Matrix from matching pairs of points in two different images. However, having to manually extract the matching points is undesirable. In the previous project, we implemented SIFTNet to automate the process of identifying matching points in two images.
+Now you have a function which can calculate the Fundamental Matrix from matching pairs of points in two different images. However, having to manually extract the matching points is undesirable. In the previous project, we implemented SIFTNet to automate the process of identifying matching points in two images. Below is a high-level description of how we will implement this section. See the *jupyter notebook* and code stubs for implementation details.
 
 We will implement a pipeline to run two images through SIFTNet to extract matching points and then send those points to your fundamental matrix estimation function to acheive an automated process for generating the fundamental matrix. However, there is an issue with this. Previously, the manually identified points were perfect matches between your two images. However, as we saw before, SIFT does not generate matches with 100% accuracy. Fortunately, to calculate the fundamental matrix we need only 8 matching points and SIFT can generate hundreds, so there should be more than enough good matches somewhere in there, if only we can find them.
 
 We will use a method called RANdom SAmple Consensus (RANSAC) to search through the points returned by SIFT and find true matches to use for calculating the fundamental matrix. You can find a simple explanation of RANSAC at [https://www.mathworks.com/discovery/ransac.html](https://www.mathworks.com/discovery/ransac.html]) See section 6.1.4 in the textbook for a more thorough explanation of how RANSAC works.
 
-In summary, we will implement a workflow using the SIFTNet from project 2 to extract feature points, then RANSAC will select a random subset of those points, you will call your function from part 2 to calculate the fundamental matrix for those points, and then you will check how many other points identified by SIFTNet match this fundamental matrix. Then you will iterate through RANSAC again until you find the subset of points that produces the best fundamental matrix with the most matching points.
+In summary, we will implement a workflow using the SIFTNet from project 2 to extract feature points, then RANSAC will select a random subset of those points, you will call your function from part 2 to calculate the fundamental matrix for those points, and then you will check how many other points identified by SIFTNet match this fundamental matrix. Then you will iterate through this process until you find the subset of points that produces the best fundamental matrix with the most matching points.
