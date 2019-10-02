@@ -108,7 +108,7 @@ Let's look more carefully into what each of the individual parts of the decompos
 
 In this part of the project you will learn how to estimate the projection matrix using objective function minimization, how you can decompose the camera matrix and what knowing these lets you do.
 
-### Part 1.1 Implement Camera Projection
+### Part 1.1 -- Implement Camera Projection
 
 In `student_code.py` you will implement camera projection in the `projection(P, points_3d)` from homogenous world coordinates $$X_i = [X_i, Y_i, Z_i, 1]$$ to non-homogenous image coordinates $$x_i, y_i$$.
 
@@ -121,7 +121,7 @@ x_i = \frac{p_{11}X_i+p_{12}Y_i + p_{13}Z_i + p_{14}}{p_{31}X_i+p_{32}Y_i + p_{3
 $$
 
 
-### Part 1.2 Implement Objective Function
+### Part 1.2 -- Implement Objective Function
 
 A camera projection matrix maps points from 3D into 2D. How can we use this to estimate its parameters? Assume that we have $$ N $$ known 2D-3D correspondences for a set of points, that is, for points with index $$ i= 1\dots N $$ we have both access to the respective 3D coordinates $$ \mathbf{x}_w^{i} $$ and 2D coordinates $$ \mathbf{x}^{i} $$. Let $$ \hat{\mathbf{P}} $$ be an estimation for the camera projection matrix. We can determine how accurate the estimation is by measuring the *reprojection error* 
 
@@ -134,11 +134,11 @@ $$\underset{\hat{\mathbf{P}}}{\arg\min}\sum_{i=1}^N (\hat{\mathbf{P}}\mathbf{x}_
 In this part, in `student_code.py` you will implement the objective function `objective_function()` that will be passed to `scipy.optimize.least_squares` for minimization with the Levenberg-Marquardt algorithm. 
 
 
-### Part 1.3: Estimating the Projection Matrix Given Point Correspondences
+### Part 1.3: -- Estimating the Projection Matrix Given Point Correspondences
 Optimizing the reprojection loss using Levenberg-Marquardt requires a good initial estimate for $$\mathbf{P}$$. This can be done by having good initial estimates for $$\mathbf{K}$$ and $$\mathbf{R}^T$$ and $$\mathbf{t}$$ which you can multiply to then generate your estimated $$\mathbf{K}$$. In this part, to make sure that you have the least squares optimization working properly we will provide you with an initial estimate. In the function you will have to implement in this part, `estimate_projection_matrix()`, you will have to pass the initial guess to `scipy.optimize.least_squares` and get the appropriate output. 
 
 Note: because $$P$$ has only 11 degrees of freedom, we fix $$\mathbf{P}_{34=1}$$.
-### Part 1.4 Decomposing the Projection Matrix
+### Part 1.4 -- Decomposing the Projection Matrix
 Recall that 
 $$ \mathbf{P} =\mathbf{K}{}_w\mathbf{R}^T_c[\mathbf{I}\;|\; -{}_w\mathbf{t}_c].$$
 Rewriting this gives us
@@ -148,12 +148,12 @@ $$ \mathbf{P} =[\mathbf{K}{}_w\mathbf{R}^T_c\;|\; \mathbf{K}{}_w\mathbf{R}^T_c -
 
 Where $$ \mathbf{M} = \mathbf{K}{}_c\mathbf{R}_w $$ is the first 3 columns of $$ \mathbf{P} $$. An operation known as *RQ decomposition* which will decompose $$ \mathbf{M} $$ into an upper triangular matrix $$ \mathbf{R} $$ and an orthonormal matrix $$ \mathbf{Q} $$ such that $$ \mathbf{RQ} = \mathbf{M} $$, where the upper triangular matrix will correspond to $$ \mathbf{K} $$ and the ortonormal matrix to $$ {}_c\mathbf{R}_w $$. In this part you will implement `decompose_camera_matrix(P)` where you will need to get the appropriate matrix elements of $$ \mathbf{P} $$ to perform the RQ decomposition, and make the appropriate function call to `scipy.linalg.rq()`.
 
-### Part 1.5 Calculating the Camera Center
+### Part 1.5 -- Calculating the Camera Center
 
 In this part in `student_code.py` you will implement `calculate_camera_center(P, K, R)` that takes as input the
 projection $$\mathbf{P}$$, intrinsic $$\mathbf{K}$$ and rotation $${}_c\mathbf{R}_w$$ matrix and outputs the camera position in world coordinates. 
 
-### Part 1.6: Taking Your Own Images and Estimating the Projection Matrix + Camera Pose
+### Part 1.6: -- Taking Your Own Images and Estimating the Projection Matrix + Camera Pose
 
 In part 1.3 you were given a set of known points in world coordinates. In this part of the assignment you will learn how to use a fiducial---an object of known size that can be used as a reference. Any object for which you have measured the size given some unit (in this project you should use centimeters).
 <center>
@@ -167,7 +167,9 @@ The figure above illustrates how a cuboid of known dimension can be used to crea
 
 Now that you have the dimension of your object (3D points) you can use the  the IPython notebook to find the image coordinates of the 3D points create your own 2D - 3D correspondences for each image. For each of your 2 images, make initial estimates for $$\mathbf{P}$$ and if your estimate is good, using your code from the previous part you should be able to estimate both the the projection matrix and the camera pose, and use the code available in the IPython notebook to visualize your findings.
 
-What would happen to the projected points if you increased/decreased the $$ x $$ coordinate, or the other coordinates of the camera center $$\mathbf{t}$$? Write down a description of your expectations in the appropriate part of your writeup submission. Perform this shift for each of the camera coordinates and then recompose the projection matrix and visualize the result in your IPython notebook. Was the visualized result what you expected?
+### Report
+* What would happen to the projected points if you increased/decreased the $$ x $$ coordinate, or the other coordinates of the camera center $$\mathbf{t}$$? Write down a description of your expectations in the appropriate part of your writeup submission.
+* Perform this shift for each of the camera coordinates and then recompose the projection matrix and visualize the result in your IPython notebook. Was the visualized result what you expected?
 
 ## PART II - Fundamental Matrix Estimation
 
@@ -180,41 +182,74 @@ The **fundamental matrix constraint** between two points $$x_0$$ and $x_1$ in th
 
 $$x_0^TFx_1=0$$
 
+Above $$x_0$$ and $$x_1$$ are *homogenous coordinates$ in the two views, and $$F$$ is the $$3 \times 3$$ fundamental matrix. FYI we can write out the equation above as:
 
-Where F is the matrix and the two vectors (u, v, 1) and (u’, v’, 1) represent the homogeneous coordinates of our points on our images. (Note: the fundamental matrix is sometimes defined as the transpose of the above matrix with the left and right image points swapped. Both are valid fundamental matrices, but we assume you use the one above.)
 
-You can think of the fundamental matrix as a **transformation** that takes points in one image and maps them to a line in another image. The reason why we want to solve for F such that the equation above is 0 is because ideally we want to end up with two orthogonal lines. We want the vector represented by F[u, v, 1] to be orthogonal to [u’, v’, 1]^T. In other words, we want the fundamental matrix to transform our points [u, v, 1] to a line that is perpendicular to the line that includes the other set of points. This is also like saying that we want the line, F multiplied by [u, v, 1], to be as close to point [u’, v’, 1] as possible.
-
-As such, we want to **minimize** the error of our projection from a point to a line. This makes estimating the fundamental matrix an optimization problem.
-
-We will give you a set of n points, and with each point, you can set up the equation
 $$
-d(q, Fp)^2 + d(p, qF)^2
+\begin{bmatrix}
+u_0           &           v_0           &           1
+\end{bmatrix}
+\begin{bmatrix}
+f_{11}          &           f_{12}          &           f_{13}\\
+f_{21}          &           f_{22}          &           f_{23}\\
+f_{31}          &           f_{32}          &           f_{33}\\
+\end{bmatrix}
+\begin{bmatrix}
+u_1\\
+v_1\\
+1
+\end{bmatrix}
+=0
 $$
 
-where $$ d $$ represents the distance, or the error, between line $$ Fp $$ and point $$ q $$, and we add that to the squared-error between line $$ qF $$ and point $$ p $$. We can do this for n pairs of points and create an objective function representing the sum of squares of these errors across all the points:
-$$ 
-J(F) = \sum_{i}^n d(q, Fp)^2 + \sum_{i}^n d(p, qF)^2
+
+Snce $$F$$ takes points in one image and maps them to a line in another image, the constraint says that we want the point $$x_0$$ to be on the *line* represented by $$Fx_1$$. If the point is exactly on the line, then the constraint $$x^T_1Fx_1=0$$ and the **line-to-point** distance between them is also zero.
+
+Hence to estimate $$F$$ we can minmize the line-to-point distance between the point $$x_0$$ and the line $$Fx_1$$, for all matching points $$(x_0, x_1)$$. This makes estimating the fundamental matrix a **least squares problem**.
+
+### Part 2.1 -- Distance Formula
+The **line-to-point distance** formula $$d$$ is defined by the following equation
+
 $$
-In order to calculate the distance d, we use the following equation:
+d(l, x) = \frac{au + bv + c}{\sqrt{a^2 + b^2}}
 $$
-d = {|a(x_0) + b(y_0) +c|}/\sqrt{a^2 + b^2}
+
+Where $$ 1 = [a,b,c]$$ is a line and $$x = [u, v, 1]$$ is the homogenous coordinate for the point. You will need to implement this in `point_line_distance()` in `student_code.py`.
+
+### Part 2.2 -- Symmetric line-to-point error
+Given a set of matching points $$\{x_0^i, x_1^i\}$$ we can set up the following symmetric line-to-point error function for every match $$(x_0,x_1)$$.
+
 $$
-https://brilliant.org/wiki/dot-product-distance-between-point-and-a-line/
+d(Fx_1, x_0)^2 + d(F^T x_0, x_1)^2
+$$
 
-where [a, b, c] represent the line $$ Fp $$ or $$ qF $$, and [x0, y0] represent the coordinates of your points.
+where $$d$$ is the distance formula between a line and a point, $$x_0$$ is one of the homogeneous points, $$F$$ is the fundamental matrix, and $$x_1$$ is the other homogeneous point. Above, in the first term we use $$F$$ which maps from the second to the first view, and in second term we use $$F^T$$ which maps from the first to the second view.
 
-In your code, you need to implement the *symmetric_line_to_point_distances* method that calculates the metric that we want to minimize while optimizing for the fundamental matrix. You will also need to call the *optimize* function to actually optimize for the fundamental matrix.
+By applying this symmetric line-to-point error calculation to every pair of points, we get this equation for the objective function to minimize, as a function of $$F$$:
 
-After you are able to estimate the fundamental matrix with the points we give you, next you will be trying out the fundamental matrix on images that you take and corresponding points that you collect.
+$$
+J(F) = \sum_i^n \bigg( d(Fx_1^i, x_0^i)^2 + d(F^T x_0^i, x_1^i)^2 \bigg)
+$$
 
-Take your own images of the same scene of a book, save them as “image_p.jpg” and “image_q.jpg”
+This is the equation you will be implementing in `signed_point_line_errors()` which is in the file `student_code.py`jj.
 
-Run *get_points.py* to plot your own points and export “p.txt” and “q.txt” files with your collected points.
+### Part 2.3 -- Least Squares Optimization
 
-Run *python fundamental_matrix.py image_p.jpg image_q.jpg p.txt q.txt* to calculate your own fundamental matrix and visualize your epipolar lines.
+Since this is a least squares optimization, you will also be making the call to SciPy's least squares optimizer. The documentation for this is available [here](https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.least\_squares.html).
+You'll need to give as input the objective function, your initial estimate of the fundamental matrix, optimization algorithm, method for computing the Jacobian, and the point pairs. There are more details on this in the code files.
 
-You’ll need to take a screenshot of this and put it in your report later.
+### Part 2.4 -- Try it Yourself
+
+Similar to Part I, for this part, you'll have to take two images of the same scene and estimate the fundamental matrix between the two images. Recall that these two images must be from different positions, and you cannot simply just rotate the camera or zoom the image. You'll have to save the images in the same project folder and use the jupyter notebook to run your fundamental matrix estimator on your images.
+
+## Report 
+
+* Why is it that when you take your own images, you can't just rotate the camera or zoom the image for your two images of the same scene?
+* Why is it that points in one image are projected by the fundamental matrix onto epipolar *lines* in the other image?
+* What happens to the epipoles and epipolar lines when you take two images where the camera centers are within the images? Why?
+* What does it mean when your epipolar lines are all horizontal across the two images?
+* Why is the fundamental matrix defined up to a scale?
+* Why is the fundamental matrix rank 2?
 
 ## Part III: RANSAC
 Now you have a function which can calculate the fundamental matrix $$F$$ from matching pairs of points in two different images. However, having to manually extract the matching points is undesirable. In the previous project, we implemented SIFTNet to automate the process of identifying matching points in two images. Below is a high-level description of how we will implement this section. See the *jupyter notebook* and code stubs for implementation details.
