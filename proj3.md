@@ -240,3 +240,34 @@ We will implement a pipeline to run two images through SIFTNet to extract matchi
 We will use a method called RANdom SAmple Consensus (RANSAC) to search through the points returned by SIFT and find true matches to use for calculating the fundamental matrix $$F$$. Please review the [lecture slides](schedule.html) on RANSAC to refresh your memory on how this algorithm works. Additionally, you can find a simple explanation of RANSAC at [https://www.mathworks.com/discovery/ransac.html](https://www.mathworks.com/discovery/ransac.html]) See section 6.1.4 in the textbook for a more thorough explanation of how RANSAC works.
 
 In summary, we will implement a workflow using the SIFTNet from project 2 to extract feature points, then RANSAC will select a random subset of those points, you will call your function from part 2 to calculate the fundamental matrix $$F$$ for those points, and then you will check how many other points identified by SIFTNet match $$F$$. Then you will iterate through this process until you find the subset of points that produces the best fundamental matrix $$F$$ with the most matching points.
+
+## Testing
+We have provided a set of tests for you to evaluate your implementation. We have included tests inside `proj3.ipynb` so you can check your progress as you implement each section. When you're done with the entire project, you can call additional tests by running `pytest` inside the test directory of the project. _Your grade on the coding portion of the project will be further evaluated with a set of tests not provided to you._
+
+## Bells & Whistles (Extra Points)
+Reflect on the fundamental matrix and RANSAC songs for extra credit. See the report template for details.
+[Fundamental Matrix Song](https://www.youtube.com/watch?v=DgGV3l82NTk)
+[RANSAC Song](https://www.youtube.com/watch?v=1YNjMxxXO-E)
+
+## Writeup
+For this project (and all other projects), you must do a project report using the template slides provided to you. Do <u>not</u> change the order of the slides or remove any slides, as this will affect the grading process on Gradescope and you will be deducted points. Follow the directions carefully.
+
+## Rubric
+* +35 pts: `HarrisNet` implementation in `HarrisNet.py` (the final score for this section will be an average of your implementations from the 9/18 and 9/27 submissions)
+* +35 pts: `SIFTNet` implementation in `SIFTNet.py`
+* +10 pts: Feature matching implementation in `student_feature_matching.py`
+* +20 pts: PDF report
+* -5\*n pts: Lose 5 points for every time you do not follow the instructions for the hand-in format.
+
+## Submission Format
+This is very important as you will lose 5 points for every time you do not follow the instructions. You will have two separate submissions for this project:
+
+* final submission:
+  1. `<your_gt_username>_proj3.zip` via **Canvas** containing:
+    * `proj3_py/` - directory containing all your code for this assignment
+  2. `<your_gt_username>_proj3.pdf` via **Gradescope** - your report
+
+Do <u>not</u> install any additional packages inside the conda environment. The TAs will use the same environment as defined in the config files we provide you, so anything that's not in there by default will probably cause your code to break during grading. Do <u>not</u> use absolute paths in your code or your code will break. Use relative paths like the starter code already does. Failure to follow any of these instructions will lead to point deductions. Create the zip file using `python zip_submission.py --gt_username <your_gt_username>` (it will zip up the appropriate directories/files for you!) and hand it through Canvas. Remember to submit your report as a PDF to Gradescope as well.
+
+## Credits
+Assignment developed by Julia Chen, Jacob Knaup, and Stefan Stojanov, Frank Dellaert, and James Hays based on a similar project by Derek Hoiem.
