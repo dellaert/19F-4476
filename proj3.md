@@ -277,8 +277,15 @@ For this project (and all other projects), you must do a project report using th
 If you choose to do anything extra, add slides _after the slides given in the template deck_ to describe your implementation, results, and analysis. Adding slides in between the report template will cause issues with Gradescope, and you will be deducted points. You will not receive full credit for your extra credit implementations if they are not described adequately in your writeup.
 
 ## Rubric
-* +80 pts: Code
-* +20 pts: PDF report
+* +66 pts: Code
+ * 22 pts: Part 1
+ * 22 pts: Part 2
+ * 22 pts: Part 3
+* +34 pts: PDF report
+ * 10 pts: Part 1
+ * 10 pts: Part 2
+ * 10 pts: Part 3
+ * 4 pts: conclusions and tests screenshot
 * -5\*n pts: Lose 5 points for every time you do not follow the instructions for the hand-in format.
 
 ## Submission Format
