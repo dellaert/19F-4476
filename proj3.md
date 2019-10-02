@@ -3,6 +3,13 @@ layout: default
 title: Project 3 - Camera Projection Matrix and Fundamental Matrix Estimation with RANSAC
 ---
 
+<center>
+    <img src="images/proj3/epipole_iphone.png">
+    <br>
+    Epipolar lines showing camera locations given corresponding points in two views of a scene.
+    <br><br>
+</center>
+
 # Project 3 - Camera Projection Matrix and Fundamental Matrix Estimation with RANSAC
 
 ## Brief
