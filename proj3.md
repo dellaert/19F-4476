@@ -258,15 +258,13 @@ We will use a method called RANdom SAmple Consensus (RANSAC) to search through t
 
 In summary, we will implement a workflow using the SIFTNet from project 2 to extract feature points, then RANSAC will select a random subset of those points, you will call your function from Part 2 to calculate the fundamental matrix $$F$$ for those points, and check how many other points identified by SIFTNet match $$F$$. Then you will iterate through this process until you find the subset of points that produces the best fundamental matrix $$F$$ with the most matching points.
 
-## Data
-
-
 ## Testing
 We have provided a set of tests for you to evaluate your implementation. We have included tests inside `proj3.ipynb` so you can check your progress as you implement each section. When you're done with the entire project, you can call additional tests by running `pytest unit_tests` inside the root directory of the project. _Your grade on the coding portion of the project will be further evaluated with a set of tests not provided to you._
 
 ## Bells & Whistles (Extra Points)
-
-
+Reflect on the fundamental matrix and RANSAC songs for extra credit. See the report template for details.
+[Fundamental Matrix Song](https://www.youtube.com/watch?v=DgGV3l82NTk)
+[RANSAC Song](https://www.youtube.com/watch?v=1YNjMxxXO-E)
 
 ## Writeup
 For this project (and all other projects), you must do a project report using the template slides provided to you. Do <u>not</u> change the order of the slides or remove any slides, as this will affect the grading process on Gradescope and you will be deducted points. In the report you will describe your algorithm and any decisions you made to write your algorithm a particular way. Then you will show and discuss the results of your algorithm. The template slides provide guidance for what you should include in your report. A good writeup doesn't just show results--it tries to draw some conclusions from the experiments. You must convert the slide deck into a PDF for your submission.
@@ -279,15 +277,14 @@ If you choose to do anything extra, add slides _after the slides given in the te
 * -5\*n pts: Lose 5 points for every time you do not follow the instructions for the hand-in format.
 
 ## Submission Format
-This is very important as you will lose 5 points for every time you do not follow the instructions. You will have two separate submissions on Canvas for this project:
+This is very important as you will lose 5 points for every time you do not follow the instructions. You will have two separate submissions for this project:
 
-  1. `<your_gt_username>.zip` via **Canvas** containing:
-    * `proj3_code/` - directory containing all your code for this assignment
-    * `additional_data/` - (optional) if you use any data other than the images we provide you, please include them here
-    * `README.txt` - (optional) if you implement any new functions other than the ones we define in the skeleton code (e.g. any extra credit implementations), please describe what you did and how we can run the code. We will not award any extra credit if we can't run your code and verify the results.
+* final submission:
+  1. `<your_gt_username>_proj3.zip` via **Canvas** containing:
+    * `proj3_py/` - directory containing all your code for this assignment
   2. `<your_gt_username>_proj3.pdf` via **Gradescope** - your report
 
 Do <u>not</u> install any additional packages inside the conda environment. The TAs will use the same environment as defined in the config files we provide you, so anything that's not in there by default will probably cause your code to break during grading. Do <u>not</u> use absolute paths in your code or your code will break. Use relative paths like the starter code already does. Failure to follow any of these instructions will lead to point deductions. Create the zip file using `python zip_submission.py --gt_username <your_gt_username>` (it will zip up the appropriate directories/files for you!) and hand it through Canvas. Remember to submit your report as a PDF to Gradescope as well.
 
 ## Credit
-Assignment developed by Jacob Knaup, Julia Chen, Stefan Stojanov, Cusuh Ham, Frank Dellaert, and James Hays based on a similar project by Aaron Bobick.
+Assignment developed by Jacob Knaup, Julia Chen, Stefan Stojanov, Frank Dellaert, and James Hays based on a similar project by Aaron Bobick.
