@@ -174,6 +174,13 @@ Now that you have the dimension of your object (3D points), you can use the Jupy
 
 ## Part 2: Fundamental Matrix Estimation
 
+<center>
+    <img src="images/proj3/fundamental_matrix.png">
+    <br>
+    Diagram of epipolar lines and epipoles. The fundamental matrix maps points from one image to an epipolar line on the other.
+    <br><br>
+</center>
+
 **Learning Objective:** (1) Understanding the fundamental matrix and (2) estimating it using self-captured images to estimate your own fundamental matrix.
 
 In this part, given a set of corresponding 2D points, we will estimate the **fundamental matrix**. Now that we know how to project a point from a 3D coordinate to a 2D coordinate, next we’ll look at how to map corresponding 2D points from two images of the same scene. You can think of the fundamental matrix as something that maps points from one view into a line in the other view. We get a line because a point in one image is only _a projection_ to 2D,  which means we can’t actually know the “depth” of that point. As such, from the viewpoint of the other camera, we can see the entire “line” that our first point could exist on.
