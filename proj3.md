@@ -22,14 +22,14 @@ title: Project 3 - Camera Projection Matrix and Fundamental Matrix Estimation wi
   * `<your_gt_username>_proj3.pdf` on Gradescope
 
 ## Setup
-Note that the same environment used in projects 1 and 2 can be used for this project! If you already have a working environment, just activate it and you are all set, no need to redo these steps! If you run into import module errors, try "pip install -e ." again, and if that still doesn't work, you may have to create a fresh environment.
+Note that we will be using a new environment for this project! If you run into import module errors, try "pip install -e ." again, and if that still doesn't work, you may have to create a fresh environment.
 
 1. Install [Miniconda](https://conda.io/miniconda.html). It doesn't matter whether you use Python 2 or 3 because we will create our own environment that uses 3 anyways.
 2. Create a conda environment using the appropriate command. On Windows, open the installed "Conda prompt" to run the command. On MacOS and Linux, you can just use a terminal window to run the command, Modify the command based on your OS (`linux`, `mac`, or `win`): `conda env create -f proj3_env_<OS>.yml`
 3. This should create an environment named 'proj3'. Activate it using the Windows command, `activate proj3` or the MacOS / Linux command, `source activate proj3`
 4. Install the project package, by running `pip install -e .` inside the repo folder.
 5. Run the notebook using `jupyter notebook ./proj3_code/proj3.ipynb`
-6. Ensure that all sanity checks are passing by running `pytest` inside the "./unit_tests" folder.
+6. Ensure that all sanity checks are passing by running `pytest` inside the "unit_tests/" folder.
 7. Generate the zip folder for the code portion of your submission once you've finished the project using `python zip_submission.py --gt_username <your_gt_username>` and submit to Canvas (don't forget to submit your report to Gradescope!).
 
 ## Part 1: Camera Projection Matrix Estimation
@@ -300,12 +300,11 @@ If you choose to do anything extra, add slides _after the slides given in the te
 * -5\*n pts: Lose 5 points for every time you do not follow the instructions for the hand-in format.
 
 ## Submission Format
-This is very important as you will lose 5 points for every time you do not follow the instructions. You will have two separate submissions for this project:
+This is very important as you will lose 5 points for every time you do not follow the instructions. You will have two submission files for this project:
 
-* final submission:
-  1. `<your_gt_username>_proj3.zip` via **Canvas** containing:
-    * `proj3_py/` - directory containing all your code for this assignment
-  2. `<your_gt_username>_proj3.pdf` via **Gradescope** - your report
+1. `<your_gt_username>_proj3.zip` via **Canvas** containing:
+* `proj3_py/` - directory containing all your code for this assignment
+2. `<your_gt_username>_proj3.pdf` via **Gradescope** - your report
 
 Do <u>not</u> install any additional packages inside the conda environment. The TAs will use the same environment as defined in the config files we provide you, so anything that's not in there by default will probably cause your code to break during grading. Do <u>not</u> use absolute paths in your code or your code will break. Use relative paths like the starter code already does. Failure to follow any of these instructions will lead to point deductions. Create the zip file using `python zip_submission.py --gt_username <your_gt_username>` (it will zip up the appropriate directories/files for you!) and hand it through Canvas. Remember to submit your report as a PDF to Gradescope as well.
 
