@@ -15,7 +15,7 @@ title: Project 3 - Camera Projection Matrix and Fundamental Matrix Estimation wi
 ## Brief
 * Due:
   * 10/16/2019 11:59PM
-* Project materials including writeup template [proj3_0.zip](projects/proj3_0.zip)
+* Project materials including writeup template [proj3_v1.zip](projects/proj3_v1.zip)
 * Hand-in: through [Canvas](https://gatech.instructure.com) AND [Gradescope](https://www.gradescope.com)
 * Required files:
   * `<your_gt_username>.zip` on Canvas
