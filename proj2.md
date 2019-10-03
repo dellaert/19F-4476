@@ -14,7 +14,7 @@ title: Project 2 - Local Feature Matching
 
 ## Brief
 * Due:
-  * 9/20/2019 11:59PM - Part 1 intermediate deliverable
+  * 9/20/2019 11:59PM - Part 1 intermediate deliverable (HarrisNet)
   * 9/27/2019 11:59PM - Entire project (the final score for your HarrisNet implementation will be an average of your HarrisNet in the 9/18 and 9/27 submissions)
 * Project materials including writeup template [proj2_v3.zip](projects/proj2_v3.zip)
 * Hand-in: through [Canvas](https://gatech.instructure.com) AND [Gradescope](https://www.gradescope.com)
