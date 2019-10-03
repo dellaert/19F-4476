@@ -169,6 +169,7 @@ The figure above illustrates how a cuboid of known dimension can be used to crea
 Now that you have the dimension of your object (3D points), you can use the Jupyter notebook to find the image coordinates of the 3D points create your own 2D-3D correspondences for each image. For each of your 2 images, make initial estimates for $$\mathbf{P}$$ and if your estimate is good, using your code from the previous part you should be able to estimate both the the projection matrix and the camera pose. Use the code available in the Jupyter notebook to visualize your findings.
 
 ### Report
+_Put these answers in your report!_
 * What would happen to the projected points if you increased/decreased the $$ x $$ coordinate, or the other coordinates of the camera center $$\mathbf{t}$$? Write down a description of your expectations in the appropriate part of your writeup submission.
 * Perform this shift for each of the camera coordinates and then recompose the projection matrix and visualize the result in your Jupyter notebook. Was the visualized result what you expected?
 
@@ -248,7 +249,7 @@ You'll need to give as input: the objective function, your initial estimate of t
 Similar to Part 1, you'll have to take two images of the same scene and estimate the fundamental matrix between the two images. Recall that these two images must be from different positions, and you cannot simply just rotate the camera or zoom the image. You'll have to save the images in the same project folder and use the Jupyter notebook to run your fundamental matrix estimator on your images.
 
 ### Report
-
+_Put these answers in your report!_
 * Why is it that when you take your own images, you can't just rotate the camera or zoom the image for your two images of the same scene?
 * Why is it that points in one image are projected by the fundamental matrix onto epipolar *lines* in the other image?
 * What happens to the epipoles and epipolar lines when you take two images where the camera centers are within the images? Why?
@@ -265,9 +266,8 @@ We will use a method called RANdom SAmple Consensus (RANSAC) to search through t
 
 In summary, we will implement a workflow using the SIFTNet from project 2 to extract feature points, then RANSAC will select a random subset of those points, you will call your function from Part 2 to calculate the fundamental matrix $$F$$ for those points, and check how many other points identified by SIFTNet match $$F$$. Then you will iterate through this process until you find the subset of points that produces the best fundamental matrix $$F$$ with the most matching points.
 
-### Report Questions
+### Report
 _Put these answers in your report!_
-
 * How many RANSAC iterations would we need to find the fundamental matrix with 99.9% certainty from your Mount Rushmore and Notre Dame SIFTNet results assuming that they had a 90% point correspondence accuracy?
 * One might imagine that if we had more than 9 point correspondences, it would be better to use more of them to solve for the fundamental matrix. Investigate this by finding the number of RANSAC iterations you would need to run with 18 points.
 * If our dataset had a lower point correspondence accuracy, say 70%, what is the minimum number of iterations needed to find the fundamental matrix with 99.9% certainty?
