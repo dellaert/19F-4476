@@ -15,7 +15,7 @@ title: Project 3 - Camera Projection Matrix and Fundamental Matrix Estimation wi
 ## Brief
 * Due:
   * 10/16/2019 11:59PM
-* Project materials including writeup template [proj3_v1.zip](projects/proj3_v1.zip)
+* Project materials including writeup template [proj3_v2.zip](projects/proj3_v2.zip)
 * Hand-in: through [Canvas](https://gatech.instructure.com) AND [Gradescope](https://www.gradescope.com)
 * Required files:
   * `<your_gt_username>.zip` on Canvas
@@ -186,7 +186,7 @@ _Put these answers in your report!_
 
 In this part, given a set of corresponding 2D points, we will estimate the **fundamental matrix**. Now that we know how to project a point from a 3D coordinate to a 2D coordinate, next we’ll look at how to map corresponding 2D points from two images of the same scene. You can think of the fundamental matrix as something that maps points from one view into a line in the other view. We get a line because a point in one image is only _a projection_ to 2D,  which means we can’t actually know the “depth” of that point. As such, from the viewpoint of the other camera, we can see the entire “line” that our first point could exist on.
 
-The **fundamental matrix constraint** between two points $$x_0$$ and $x_1$ in the left and right views, respectively, is given by the following equation:
+The **fundamental matrix constraint** between two points $$x_0$$ and $$x_1$$ in the left and right views, respectively, is given by the following equation:
 
 $$x_0^TFx_1=0$$
 
