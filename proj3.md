@@ -15,7 +15,7 @@ title: Project 3 - Camera Projection Matrix and Fundamental Matrix Estimation wi
 ## Brief
 * Due:
   * 10/16/2019 11:59PM
-* Project materials including writeup template [proj3_v2.zip](projects/proj3_v2.zip)
+* Project materials including writeup template [proj3_v3.zip](projects/proj3_v3.zip)
 * Hand-in: through [Canvas](https://gatech.instructure.com) AND [Gradescope](https://www.gradescope.com)
 * Required files:
   * `<your_gt_username>.zip` on Canvas
@@ -84,14 +84,14 @@ $$
     0 & 0 & 1
 \end{bmatrix}
 \begin{bmatrix}
-r_{11} & r_{12} & r_{13} \\
-r_{21} & r_{22} & r_{23} \\
-r_{31} & r_{32} & r_{33}
+r_{11} & r_{21} & r_{31} \\
+r_{12} & r_{22} & r_{32} \\
+r_{13} & r_{23} & r_{33}
 \end{bmatrix}
 \begin{bmatrix}
-1 & 0 & 0 & t_x \\
-0 & 1 & 0 & t_y \\
-0 & 0 & 1 & t_z
+1 & 0 & 0 & -t_x \\
+0 & 1 & 0 & -t_y \\
+0 & 0 & 1 & -t_z
 \end{bmatrix}
 $$
 
