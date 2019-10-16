@@ -16,10 +16,10 @@
 8,Oct,7,Mon,Structure from motion,S07-SFM-B,Ch. 7,
 8,Oct,9,Wed,Midterm,-,,
 9,Oct,14,Mon,Fall recess - no classes,-,,
-9,Oct,16,Wed,Dense motion estimation,-,Ch. 8,
-10,Oct,21,Mon,Stereo Correspondence,-,Ch. 11,"3 due, 4 out"
-10,Oct,23,Wed,Deep Learning,-,,
-11,Oct,28,Mon,3D reconstruction,-,Ch. 12,
+9,Oct,16,Wed,Dense motion estimation,S08-Motion,Ch. 8,
+10,Oct,21,Mon,Deep Learning (Cusuh Ham),-,Ch. 11,"3 due, 4 out"
+10,Oct,23,Wed,Stereo Correspondence (Rehg),-,,
+11,Oct,28,Mon,Dense motion estimation (cont'd),-,Ch. 8,
 11,Oct,30,Wed,3D reconstruction,-,Ch. 12,
 12,Nov,4,Mon,Recognition,-,Ch. 14,"4 due, 5 out"
 12,Nov,6,Wed,Recognition,-,Ch. 14,
