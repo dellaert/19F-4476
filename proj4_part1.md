@@ -5,6 +5,13 @@ title: Project 4 - Depth Estimation using Stereo
 
 # [Project 4: Depth Estimation using Stereo](proj4.md)
 # Part 1: Simple stereo by matching patches
+
+## Brief
+* Due: 10/28/2019 11:59PM
+* Project materials: [proj4_part1_v2.zip](projects/proj4_part1_v2.zip)
+* Hand-in: through [Canvas](https://gatech.instructure.com)
+* Required files: `<your_gt_username>.zip`
+
 We know that there is some encoding of depth when the images are captured using a stereo rig, much like human eyes.
 
 You can try a simple experiment to see the stereo effect in action. Try seeing a scene with only your left eye. Then close your left eye and see using your right eye. Make the transition quickly. You should notice a _horizontal_ shift in the image perceived. Can you comment on the difference in shift for different objects when you do this experiment? Is it related to the depth of the objects in some way?
