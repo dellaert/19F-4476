@@ -54,7 +54,7 @@ These are the steps taken in this image (and will be implemented by you):
 
 1. Pick a patch in the left image (red block), P1.
 2. Place the patch in the same (x,y) coordinates in the right image (red block). As this is binocular stereo, we will need to search for P1 on the left side starting from this position. Make sure you understand this point well before proceeding further.
-3. Slide the block of candidates to the right (indicated by the different pink blocks). The search area is restricted by the parameter `max_search_bound` in the code. The candidates will overlap.
+3. Slide the block of candidates to the left (indicated by the different pink blocks). The search area is restricted by the parameter `max_search_bound` in the code. The candidates will overlap.
 4. We will pick the candidate patch with the minimum similarity error (green block). The horizontal shift from the red block to the green block in this image is the disparity value for the centre of P1 in the left image.
 
 Note: the images have already been rectified and hence we can search on just a horizontal scan line.
