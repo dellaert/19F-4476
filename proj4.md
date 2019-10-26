@@ -9,7 +9,7 @@ title: Project 4 - Depth Estimation using Stereo
 * Due:
   * 10/28/2019 11:59PM - Part 1 code only
   * 11/04/2019 11:59PM - Part 2 code + full report
-* Project materials: [proj4_part1_v2.zip](projects/proj4_part1_v2.zip), part 2 coming soon
+* Project materials: [proj4_full_v1.zip](projects/proj4_full_v1.zip])
 * Hand-in: through [Canvas](https://gatech.instructure.com) AND [Gradescope](https://www.gradescope.com)
 * Required files:
   * Intermediate: `<your_gt_username>.zip` on Canvas
@@ -30,7 +30,7 @@ Note that the proj3 environment should work for this project! If you run into im
 We have split the description for this project into two parts:
 
 1. [Part 1](proj4_part1.md)
-2. Part 2 (**will be released soon**)
+2. [Part 1](proj4_part2.md) (**New**)
 
 
 ## Writeup
