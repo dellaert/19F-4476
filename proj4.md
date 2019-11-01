@@ -45,7 +45,7 @@ If you choose to do anything extra, add slides _after the slides given in the te
     * 10 pts: `similarity_measures.py`
     * 20 pts: `disparity_map.py`
   * Part 2:
-    * 20 pts: `mc-cnn.ipynb`
+    * 20 pts: `mc-cnn.ipynb` + `network.py`
 * +40 pts: Report
   * 20 pts: part 1 analyses
   * 20 pts: part 2 analyses
@@ -60,7 +60,8 @@ This is very important as you will lose 5 points for every time you do not follo
     * `additional_data/` - (optional) if you use any data other than the images we provide you, please include them here
     * `README.txt` - (optional) if you implement any new functions other than the ones we define in the skeleton code (e.g. any extra credit implementations), please describe what you did and how we can run the code. We will not award any extra credit if we can't run your code and verify the results.
 * 11/04/2019 final submission:
-  1. `mc-cnn.ipynb` via Canvas - your part 2 code
+  1. `<your_gt_username>.zip` via Canvas containing:
+    * `proj4_code/` - directory containing at least `mc-cnn.ipynb` and `network.py`, but can contain all of you other code
   2. `<your_gt_username>_proj4.pdf` via Gradescope - your report
 
 Do <u>not</u> install any additional packages inside the conda environment. The TAs will use the same environment as defined in the config files we provide you, so anything that's not in there by default will probably cause your code to break during grading. Do <u>not</u> use absolute paths in your code or your code will break. Use relative paths like the starter code already does. Failure to follow any of these instructions will lead to point deductions. Create the zip file using `python zip_submission.py --gt_username <your_gt_username>` (it will zip up the appropriate directories/files for you!) and hand it in through Canvas. Remember to submit your report as a PDF to Gradescope as well.
