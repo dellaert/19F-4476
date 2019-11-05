@@ -6,8 +6,7 @@ title: Project 5 - Scene Recognition with Bag of Words
 # Project 5: Scene Recognition with Bag of Words
 
 ## Brief
-* Due:
-  * 11/18/2019 11:59PM
+* Due: 11/18/2019 11:59PM
 * Project materials including writeup template [proj5_v1.zip](projects/proj5_v1.zip)
 * Data to be used: [data.zip](projects/data_proj5.zip): download and extract to the project folder
 * Hand-in: through [Canvas](https://gatech.instructure.com) AND [Gradescope](https://www.gradescope.com)
@@ -15,7 +14,7 @@ title: Project 5 - Scene Recognition with Bag of Words
   * `<your_gt_username>.zip` on Canvas
   * `<your_gt_username>_proj5.pdf` on Gradescope
 
-## Setup 
+## Setup
 We will be installing a **NEW** environment for this project; follow the instructions below to set up the env. If you run into import module errors, try “pip install -e .” again, and if that still doesn’t work, you may have to create a fresh environment.
 
 1. Install [Miniconda](https://conda.io/miniconda.html). It doesn't matter whether you use Python 2 or 3 because we will create our own environment that uses 3 anyway.
@@ -56,12 +55,12 @@ Implement `pairwise_distances()` in `student_code.py`. Use the Euclidean distanc
 Fill in the function `get_tiny_images()` to return a Numpy array of dimension $$N \times d$$, where $$N$$ is the number of image instances and $$d$$ is the output feature dimension. In our case, our features are a $$16 \times 16$$ tiny image, so the feature dimension $$d$$ is a flattened array of length 256.
 
 ### Part 1.3: K Nearest-Neighbors Classification
-In `student_code.py`, implement the function `nearest_neighbor_classify()`.  Given the training image features and labels, together with the testing features, classify the testing labels using the k nearest neighbors found in the training set. Your k nearest neighbors would vote on what to label the data point. The pipeline in the Jupyter Notebook will also walk you through the performance evaluation via a simple confusion matrix. 
+In `student_code.py`, implement the function `nearest_neighbor_classify()`.  Given the training image features and labels, together with the testing features, classify the testing labels using the k nearest neighbors found in the training set. Your k nearest neighbors would vote on what to label the data point. The pipeline in the Jupyter Notebook will also walk you through the performance evaluation via a simple confusion matrix.
 
 Paste the confusion matrix with the standard parameters (image size = 16$$\times$$16, `k` = 3) onto the report. Note that you need to tune your parameters and reach **15%** to get full credits for this part.
 
 ### Experiment and Report:
-Perform experiments with the values of 
+Perform experiments with the values of
 
 * tiny image size;
 * `k` in kNN.
