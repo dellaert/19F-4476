@@ -7,7 +7,7 @@ title: Project 5 - Scene Recognition with Bag of Words
 
 ## Brief
 * Due: 11/18/2019 11:59PM
-* Project materials including writeup template [proj5_v1.zip](projects/proj5_v1.zip)
+* Project materials including writeup template [proj5_v2.zip](projects/proj5_v2.zip)
 * Data to be used: [data.zip](projects/data_proj5.zip): download and extract to the project folder
 * Hand-in: through [Canvas](https://gatech.instructure.com) AND [Gradescope](https://www.gradescope.com)
 * Required files:
