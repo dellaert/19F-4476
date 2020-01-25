@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Project 3 - Camera Projection Matrix and Fundamental Matrix Estimation with RANSAC
+title: Project 2 - Camera Projection Matrix and Fundamental Matrix Estimation with RANSAC
 ---
 
 <center>
@@ -14,23 +14,23 @@ title: Project 3 - Camera Projection Matrix and Fundamental Matrix Estimation wi
 
 ## Brief
 * Due:
-  * 10/16/2019 11:59PM
+  * 2/7/2020 11:59PM
 * Project materials including writeup template [proj3_v3.zip](projects/proj3_v3.zip)
-* Hand-in: through [Canvas](https://gatech.instructure.com) AND [Gradescope](https://www.gradescope.com)
+* Hand-in: through [Gradescope](https://www.gradescope.com)
 * Required files:
-  * `<your_gt_username>.zip` on Canvas
-  * `<your_gt_username>_proj3.pdf` on Gradescope
+  * `<your_gt_username>.zip` on Gradescope code submission
+  * `<your_gt_username>_proj3.pdf` on Gradescope report submission
 
 ## Setup
 Note that we will be using a new environment for this project! If you run into import module errors, try "pip install -e ." again, and if that still doesn't work, you may have to create a fresh environment.
 
 1. Install [Miniconda](https://conda.io/miniconda.html). It doesn't matter whether you use Python 2 or 3 because we will create our own environment that uses 3 anyways.
-2. Create a conda environment using the appropriate command. On Windows, open the installed "Conda prompt" to run the command. On MacOS and Linux, you can just use a terminal window to run the command, Modify the command based on your OS (`linux`, `mac`, or `win`): `conda env create -f proj3_env_<OS>.yml`
-3. This should create an environment named 'proj3'. Activate it using the Windows command, `activate proj3` or the MacOS / Linux command, `source activate proj3`
+2. Create a conda environment using the appropriate command. On Windows, open the installed "Conda prompt" to run the command. On MacOS and Linux, you can just use a terminal window to run the command, Modify the command based on your OS (`linux`, `mac`, or `win`): `conda env create -f proj2_env_<OS>.yml`
+3. This should create an environment named 'proj2'. Activate it using the Windows command, `activate proj2` or the MacOS / Linux command, `source activate proj2`
 4. Install the project package, by running `pip install -e .` inside the repo folder.
-5. Run the notebook using `jupyter notebook ./proj3_code/proj3.ipynb`
-6. Ensure that all sanity checks are passing by running `pytest` inside the "unit_tests/" folder.
-7. Generate the zip folder for the code portion of your submission once you've finished the project using `python zip_submission.py --gt_username <your_gt_username>` and submit to Canvas (don't forget to submit your report to Gradescope!).
+5. Run the notebook using `jupyter notebook ./proj2_code/proj2.ipynb`
+6. Ensure that all sanity checks are passing by running `pytest` *inside* the `proj2_unit_tests/` folder.
+7. Generate the zip folder for the code portion of your submission once you've finished the project using `python zip_submission.py --gt_username <your_gt_username>` and submit to Gradescope (don't forget to submit your report to Gradescope as well!).
 
 ## Part 1: Camera Projection Matrix Estimation
 
@@ -258,29 +258,47 @@ _Put these answers in your report!_
 * Why is the fundamental matrix rank 2?
 
 ## Part 3: RANSAC
-Now you have a function which can calculate the fundamental matrix $$F$$ from matching pairs of points in two different images. However, having to manually extract the matching points is undesirable. In the previous project, we implemented SIFTNet to automate the process of identifying matching points in two images. Below is a high-level description of how we will implement this section. See the Jupyter notebook and code documentation for implementation details.
 
-We will implement a pipeline to run two images through SIFTNet to extract matching points and then send those points to your fundamental matrix estimation function to acheive an automated process for generating the fundamental matrix $$F$$. However, there is an issue with this. Previously, the manually-identified points were perfect matches between your two images. As we saw before, SIFT does not generate matches with 100% accuracy. Fortunately, to calculate the fundamental matrix $$F$$, we need only 9 matching points and SIFT can generate hundreds, so there should be more than enough good matches somewhere in there (if only we can find them).
+**Learning objective:** (1) Understand the parameters of the RANSAC algorithm. (2) Apply RANSAC to find the fundamental matrix for a pair of images given imperfect point correspondences (ie outliers).
+
+Now you have a function which can calculate the fundamental matrix $$F$$ from matching pairs of points in two different images. However, having to manually extract the matching points is undesirable. Later in the course, you will learn to to automate the process of identifying matching points in two images. For now we will assume that someone has already run code to find the matches for you; however, the automated matching is not perfect, and we will use RANSAC to find a set of true matches (inliers) to calculate $$F$$. Fortunately, to calculate the fundamental matrix $$F$$, we need only 9 matching points, but we want to automate the process of finding them. Below is a high-level description of how we will implement this section. See the Jupyter notebook and code documentation for implementation details.
+
+### Part 3.1: RANSAC Iterations
 
 We will use a method called RANdom SAmple Consensus (RANSAC) to search through the points returned by SIFT and find true matches to use for calculating the fundamental matrix $$F$$. Please review the [lecture slides](schedule.html) on RANSAC to refresh your memory on how this algorithm works. Additionally, you can find a simple explanation of RANSAC at [https://www.mathworks.com/discovery/ransac.html](https://www.mathworks.com/discovery/ransac.html]). See section 6.1.4 in the textbook for a more thorough explanation of how RANSAC works.
 
-In summary, we will implement a workflow using the SIFTNet from project 2 to extract feature points, then RANSAC will select a random subset of those points, you will call your function from Part 2 to calculate the fundamental matrix $$F$$ for those points, and check how many other points identified by SIFTNet match $$F$$. Then you will iterate through this process until you find the subset of points that produces the best fundamental matrix $$F$$ with the most matching points.
+You may wonder how many iterations of this algorithm we need to run in order to acheive success. It turns out RANSAC actually provides probabilistic guarentees of finding the correct model for our dataset given the number of iterations we run, the size of our sample, and the proportion of true matches in our dataset. You will right a function to determine how many iterations of RANSAC to run in order to find the fundamental matrix with a high probability of success. The jupyter notebook will guide you through this derivation.
+
+### Part 3.2: RANSAC Implementation
+
+Next we will implement the RANSAC algorithm. Remember the steps from the link above:
+ 1. Randomly selecting a subset (k=9) of the data set
+ 1. Fitting a model to the selected subset
+ 1. Determining the number of outliers
+ 1. Repeating steps 1-3 for a prescribed number of iterations
+
+For the application of finding true point pair matches and using them to calculate the fundamental matrix, our subset of the data will be the minimum number of point pairs needed to calculate the fundamental matrix.
+The model we are fitting is the fundamental matrix.
+Outliers will be found by using the `point_line_distance()` error function from part 2 and thresholding with a certain margin of error.
+
+### Part 3.3: RANSAC Visualization
+
+Finally, we will demonstrate running RANSAC on a real image pair, and plot the epipolar lines from the resulting fundamental matrix. You do not need to write any new code for this section, but use it as an opportunity in addition to the unit tests to check your results and better understand epipolar geometry and RANSAC.
 
 ### Report
 _Put these answers in your report!_
-* How many RANSAC iterations would we need to find the fundamental matrix with 99.9% certainty from your Mount Rushmore and Notre Dame SIFTNet results assuming that they had a 90% point correspondence accuracy?
-* One might imagine that if we had more than 9 point correspondences, it would be better to use more of them to solve for the fundamental matrix. Investigate this by finding the number of RANSAC iterations you would need to run with 18 points.
-* If our dataset had a lower point correspondence accuracy, say 70%, what is the minimum number of iterations needed to find the fundamental matrix with 99.9% certainty?
 
-At the end of this assignment you will be performing RANSAC to find the fundamental matrix for an image pair that you create, and you will want to keep the estimated accuracy of your point correspondences in mind when deciding how many iterations are appropriate.
+ * What is the **minimum** number of RANSAC iterations we would we need to find the fundamental matrix with 99.9% certainty from a set of proposed matches that have a 90% point correspondence accuracy? *Keep in mind that we need at least 9 point correspondences for our optimization to find the fundamental matrix in part 2*
+
+ * One might imagine that if we had more than 9 point correspondences, it would be better to use more of them to solve for the fundamental matrix. Investigate this by finding the number of RANSAC iterations you would need to run for the above situation with 18 points.
+
+ * If our dataset had a lower point correspondence accuracy, say 70%, what is the minimum number of iterations needed to find the fundamental matrix with 99.9% certainty?
 
 ## Testing
-We have provided a set of tests for you to evaluate your implementation. We have included tests inside `proj3.ipynb` so you can check your progress as you implement each section. When you're done with the entire project, you can call additional tests by running `pytest` inside the "./unit_tests" directory of the project. _Your grade on the coding portion of the project will be further evaluated with a set of tests not provided to you._
+We have provided a set of tests for you to evaluate your implementation. We have included tests inside `proj3.ipynb` so you can check your progress as you implement each section. When you're done with the entire project, you can call additional tests by running `pytest` *inside* the "./proj2_unit_tests" directory of the project. _Your grade on the coding portion of the project will be further evaluated with a set of tests not provided to you._
 
 ## Bells & Whistles (Extra Points)
-Reflect on the fundamental matrix and RANSAC songs for extra credit. See the report template for details.
-[Fundamental Matrix Song](https://www.youtube.com/watch?v=DgGV3l82NTk)
-[RANSAC Song](https://www.youtube.com/watch?v=1YNjMxxXO-E)
+This assignment includes 10 points of extra for implementing SVD to decompose the essential matrix as described above. All grad students are required to complete the extra credit.
 
 ## Writeup
 For this project (and all other projects), you must do a project report using the template slides provided to you. Do <u>not</u> change the order of the slides or remove any slides, as this will affect the grading process on Gradescope and you will be deducted points. In the report you will describe your algorithm and any decisions you made to write your algorithm a particular way. Then you will show and discuss the results of your algorithm. The template slides provide guidance for what you should include in your report. A good writeup doesn't just show results--it tries to draw some conclusions from the experiments. You must convert the slide deck into a PDF for your submission.
@@ -302,11 +320,11 @@ If you choose to do anything extra, add slides _after the slides given in the te
 ## Submission Format
 This is very important as you will lose 5 points for every time you do not follow the instructions. You will have two submission files for this project:
 
-1. `<your_gt_username>_proj3.zip` via **Canvas** containing:
-* `proj3_py/` - directory containing all your code for this assignment
-2. `<your_gt_username>_proj3.pdf` via **Gradescope** - your report
+1. `<your_gt_username>_proj2.zip` via **Gradescope** containing:
+* `proj2_code/` - directory containing all your code for this assignment
+2. `<your_gt_username>_proj2.pdf` via **Gradescope** - your report
 
 Do <u>not</u> install any additional packages inside the conda environment. The TAs will use the same environment as defined in the config files we provide you, so anything that's not in there by default will probably cause your code to break during grading. Do <u>not</u> use absolute paths in your code or your code will break. Use relative paths like the starter code already does. Failure to follow any of these instructions will lead to point deductions. Create the zip file using `python zip_submission.py --gt_username <your_gt_username>` (it will zip up the appropriate directories/files for you!) and hand it through Canvas. Remember to submit your report as a PDF to Gradescope as well.
 
 ## Credit
-Assignment developed by Jacob Knaup, Julia Chen, Stefan Stojanov, Frank Dellaert, and James Hays based on a similar project by Aaron Bobick.
+Assignment developed by Jacob Knaup, Julia Chen, Stefan Stojanov, Frank Dellaert, and James Hays based on a similar project by Aaron Bobick; updated by Ayush Baid, Jacob Knaup, and Judy Hoffman.
